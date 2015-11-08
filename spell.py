@@ -5,37 +5,57 @@ import re, collections, csv
 
 word_frequency = {}
 
-previous_words = {}
+following_word = {}
 
 # def unicode_csv_reader(utf8_data, dialect=csv.excel, **kwargs):
 #     csv_reader = csv.DictReader(utf8_data, dialect=dialect, **kwargs)
 #     for row in csv_reader:
 #         yield [unicode(cell, 'utf-8') for cell in row]
 
+def missing(i):
+    if i in [83, 98, 109, 111]:
+        return True
+    else:
+        return False
 
-
-with open('althingi_tagged/079.csv') as csvfile:
-    print csvfile
-    reader = csv.DictReader(csvfile)
-    prev_word = ""
-    for row in reader:
-        if not word_frequency.get(row['Word']):
-            word_frequency[row['Word']] = 1
-            previous_words[row['Word']] = {}
-            previous_words[row['Word']][prev_word] = 1
+#for i in range(79,136):
+for j in range(79,80):
+    i = 79
+    if not missing(i):
+        prefix = 'althingi_tagged/'
+        if i < 100:
+            filename = prefix + '0' + str(i) + '.csv'
         else:
-            word_frequency[row['Word']] += 1
-            if previous_words[row['Word']].get(prev_word):
-                previous_words[row['Word']][prev_word] += 1
-            else:
-                previous_words[row['Word']][prev_word] = 1
-        prev_word = row['Word']
+            filename = prefix + str(i) + '.csv'
+        with open(filename) as csvfile:
+            print csvfile
+            reader = csv.DictReader(csvfile)
+            prev_word = ""
+            for row in reader:
+                cur_word = row['Word']
+                if cur_word == ",":
+                    continue
+                if not prev_word:
+                    cur_word = cur_word.lower()
+                if not word_frequency.get(cur_word):
+                    word_frequency[cur_word] = 1
+                else:
+                    word_frequency[cur_word] += 1
+                if not following_word.get(prev_word):
+                    following_word[prev_word] = {}
+                    following_word[prev_word][cur_word] = 1
+                elif not following_word[prev_word].get(cur_word):
+                    following_word[prev_word][cur_word] = 1
+                else:
+                    following_word[prev_word][cur_word] += 1
+                prev_word = cur_word
 
-# for key, value in previous_words.iteritems():
-#     print "word", key, value
 
-for key, value in word_frequency.iteritems():
+for key, value in following_word.iteritems():
     print "word", key, value
+
+# for key, value in word_frequency.iteritems():
+#     print "word", key, value
 
 
 def words(text): return re.findall('[a-z]+', text.lower())
