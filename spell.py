@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import re, collections, csv
+import re, collections, csv, editdistance
 
 word_frequency = {}
-
 following_word = {}
 
 # def unicode_csv_reader(utf8_data, dialect=csv.excel, **kwargs):
@@ -18,43 +17,94 @@ def missing(i):
     else:
         return False
 
-#for i in range(79,136):
-for j in range(79,80):
-    i = 79
-    if not missing(i):
-        prefix = 'althingi_tagged/'
-        if i < 100:
-            filename = prefix + '0' + str(i) + '.csv'
-        else:
-            filename = prefix + str(i) + '.csv'
-        with open(filename) as csvfile:
-            print csvfile
-            reader = csv.DictReader(csvfile)
-            prev_word = ""
-            for row in reader:
-                cur_word = row['Word']
-                if cur_word == ",":
-                    continue
-                if not prev_word:
-                    cur_word = cur_word.lower()
-                if not word_frequency.get(cur_word):
-                    word_frequency[cur_word] = 1
-                else:
-                    word_frequency[cur_word] += 1
-                if not following_word.get(prev_word):
-                    following_word[prev_word] = {}
-                    following_word[prev_word][cur_word] = 1
-                elif not following_word[prev_word].get(cur_word):
-                    following_word[prev_word][cur_word] = 1
-                else:
-                    following_word[prev_word][cur_word] += 1
-                prev_word = cur_word
+
+def create_dicts():
+    #for i in range(79,136):
+    for j in range(79,80):
+        i = 79
+        if not missing(i):
+            prefix = 'althingi_errors/'
+            if i < 100:
+                filename = prefix + '0' + str(i) + '.csv'
+            else:
+                filename = prefix + str(i) + '.csv'
+            with open(filename, newline='', encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile)
+                prev_word = ""
+                for row in reader:
+                    cur_word = row['CorrectWord']
+                    if cur_word == ",":
+                        continue
+                    if not prev_word:
+                        cur_word = cur_word.lower()
+                    if not word_frequency.get(cur_word):
+                        word_frequency[cur_word] = 1
+                    else:
+                        word_frequency[cur_word] += 1
+                    if not following_word.get(prev_word):
+                        following_word[prev_word] = {}
+                        following_word[prev_word][cur_word] = 1
+                    elif not following_word[prev_word].get(cur_word):
+                        following_word[prev_word][cur_word] = 1
+                    else:
+                        following_word[prev_word][cur_word] += 1
+                    prev_word = cur_word
+
+def exists(word):
+    return following_word.get(word)
 
 
-for key, value in following_word.iteritems():
-    print "word", key, value
+def count_seen_wordpair(previous_word, current_word):
+    # print previous_word, current_word, "(" + str(following_word[previous_word].get(current_word)) + ")", "times"
+    return following_word[previous_word].get(current_word)
 
-# for key, value in word_frequency.iteritems():
+
+def best_guess_if_rwe(previous_word, current_word):
+    min_error_count = float('inf')
+    min_error_word = ""
+    for key, value in following_word[previous_word].items():
+        edit_distance = editdistance.eval(key, current_word)
+        if edit_distance < min_error_count:
+            min_error_count = edit_distance
+            min_error_word = key
+    return min_error_word
+
+
+def read_in_test_data():
+    with open('althingi_errors/079.csv', newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        prev_word = ""
+        for row in reader:
+            word = row['Word']
+            if word == ",":
+                continue
+            guess = word
+            correct_word = row['CorrectWord']
+            if not exists(prev_word):
+                continue
+            print("Count: ", count_seen_wordpair(prev_word, word))
+            if not count_seen_wordpair(prev_word, word):
+                print("Pair with error: ", prev_word, word)
+                guess = best_guess_if_rwe(prev_word, word)
+                print("Best guess: ", guess )
+                print("Correct word: ", correct_word)
+            elif word != correct_word:
+                print("Not a real word error: ", word )
+                print("Correct word: ", correct_word )
+            prev_word = guess
+
+create_dicts()
+print("Should return a positive number", count_seen_wordpair('en', 'rétt'))
+print(following_word['en'].get('sósíalismi'))
+read_in_test_data()
+# print "Should return True", check_real_word_error('horfinn', 'ef')
+# print "Should return False", check_real_word_error('fresti', 'sem')
+# print "Should return Vegna", best_guess_if_rwe('sæti', 'vega')
+
+# for key, value in following_word.items():
+#     print "word", key, value
+
+# for key, value in word_frequency.items():
 #     print "word", key, value
 
 
@@ -67,7 +117,7 @@ def train(features):
         model[f] += 1
     return model
 
-NWORDS = train(words(file('althingi_text/079.txt').read()))
+# NWORDS = train(words(file('althingi_text/079.txt').read()))
 
 #alphabet = 'aábcdeéfghiíjklmnoópqrstuúvwxyzþæö'
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
