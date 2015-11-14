@@ -1,19 +1,20 @@
 import csv
 
-# Skrifar út villuhlutfall fyrir althingi_errors skrárnar
-# krefst þess að kallað sé á villuhlutfoll með réttri slóð á althingi_errors
+
 
 # Notkun: hlutfoll = villuhlutfoll(folderpath)
 # Fyrir: folderpath er slóðin að althingi_errors möppunni
-# Eftir:  hlutfoll er listi af hlutfallslegum fjölda villna í althingi_errors skránum. hlutfoll[0] er fyrir 079.csv, hlutfoll[1] fyrir 080.csv o.s.frv.
-#       Meðalfjöldi villna hefur verið skrifaður út
+# Eftir:  hlutfoll er dictionary af hlutfallslegum fjölda villna í althingi_errors skránum.
+#       hlutfoll[79] gefur hlutfall villna í 079.csv, hlutfoll[110] gefur hlutfall villna í 110.csv 
+#       Meðalfjöldi villna hefur líka verið skrifaður út
+#       hlutfall = fjöldi rangra orða / fjöldi orða
 
 def villuhlutfoll(folder):
     
     missing = [83, 86,87, 88,98,104, 109]
     villuhlutfoll = []
 
-    for i in [x for x in range(79,99) if x not in missing]:
+    for i in [x for x in range(79,100) if x not in missing]:
 
         with open(folder + '0' + str(i) + '.csv', encoding = 'utf-8') as errorfile:
             reader = csv.reader(errorfile)
@@ -26,7 +27,6 @@ def villuhlutfoll(folder):
                     nerrors += 1
                     villuradir.append(nrow)
                 nrow += 1
-
             villuhlutfoll.append(nerrors/nrow)
 
     for i in [x for x in range(100,111) if x not in missing]:
@@ -42,18 +42,27 @@ def villuhlutfoll(folder):
                     nerrors += 1
                     villuradir.append(nrow)
                 nrow += 1
-
             villuhlutfoll.append(nerrors/nrow)
             
     print("meðalfjöldi villna:")
     print(sum(villuhlutfoll)/len(villuhlutfoll))
-    return villuhlutfoll
+
+    j = 0
+    dicto = dict()
+    x = [i for i in range(79,111) if i not in missing]
+
+    for i in x:
+        dicto[i] = villuhlutfoll[j]
+        j += 1
+        
+        
+    return dicto
 
 
 hlutfoll = villuhlutfoll('C:\\Users\\EggertÞór\\Documents\\Skólinn\\Reiknigreind\\Project 2\\althingi_errors\\')
 missing = [83, 86,87, 88,98,104, 109]
-j = 0
-for i in [x for x in range(79,111) if x not in missing]:
-    print("Hlutfallsvillur í skrá nr. " + str(i))
-    print(hlutfoll[j])
-    j += 1
+x = [i for i in range(79,111) if i not in missing]
+
+for i in x:
+    print("Hlutfallsvillur í skrá #:")
+    print(i, hlutfoll[i])
