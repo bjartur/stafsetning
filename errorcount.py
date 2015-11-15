@@ -1,6 +1,8 @@
 import csv
+from sys import argv
+from os.path import sep as slash
 
-
+missing = [83, 86, 87, 88, 98, 104, 109]
 
 # Notkun: hlutfoll = villuhlutfoll(folderpath)
 # Fyrir: folderpath er slóðin að althingi_errors möppunni
@@ -9,14 +11,13 @@ import csv
 #       Meðalfjöldi villna hefur líka verið skrifaður út
 #       hlutfall = fjöldi rangra orða / fjöldi orða
 
-def villuhlutfoll(folder):
+def villuhlutfoll(folder, files):
     
-    missing = [83, 86,87, 88,98,104, 109]
     villuhlutfoll = []
 
-    for i in [x for x in range(79,100) if x not in missing]:
+    for i in files:
 
-        with open(folder + '0' + str(i) + '.csv', encoding = 'utf-8') as errorfile:
+        with open(folder + slash + '0' + str(i) + '.csv', encoding = 'utf-8') as errorfile:
             reader = csv.reader(errorfile)
             nerrors = 0
             nrow = 0
@@ -29,9 +30,9 @@ def villuhlutfoll(folder):
                 nrow += 1
             villuhlutfoll.append(nerrors/nrow)
 
-    for i in [x for x in range(100,111) if x not in missing]:
+    for i in files:
     
-        with open(folder  + str(i) + '.csv', encoding = 'utf-8') as errorfile:
+        with open(folder + slash + '0' + str(i) + '.csv', encoding = 'utf-8') as errorfile:
             reader = csv.reader(errorfile)
             nerrors = 0
             nrow = 0
@@ -43,26 +44,35 @@ def villuhlutfoll(folder):
                     villuradir.append(nrow)
                 nrow += 1
             villuhlutfoll.append(nerrors/nrow)
-            
-    print("meðalfjöldi villna:")
-    print(sum(villuhlutfoll)/len(villuhlutfoll))
 
     j = 0
     dicto = dict()
-    x = [i for i in range(79,111) if i not in missing]
 
-    for i in x:
+    for i in files:
         dicto[i] = villuhlutfoll[j]
         j += 1
         
-        
     return dicto
 
+if __name__ == '__main__':
+	if len(argv) <= 1:
+		a = 79
+	else:
+		a = argv[1]
+	if len(argv) <= 2:
+		b = 81
+	else:
+		b = argv[2]
+	if len(argv) <= 3:
+		foldername = 'althingi_errors'
+	else:
+		foldername = argv[3]
 
-hlutfoll = villuhlutfoll('C:\\Users\\EggertÞór\\Documents\\Skólinn\\Reiknigreind\\Project 2\\althingi_errors\\')
-missing = [83, 86,87, 88,98,104, 109]
-x = [i for i in range(79,111) if i not in missing]
-
-for i in x:
-    print("Hlutfallsvillur í skrá #:")
-    print(i, hlutfoll[i])
+	files = list(filter(lambda filename: filename not in missing, range(a,b+1)))
+	hlutfall = villuhlutfoll(foldername, files) #dict
+	hlutfoll = hlutfall.values() #list
+	
+	for filename in files:
+		print("Villutíðni í skrá #{:d}\t{:.2%}".format(filename, hlutfall[filename]), sep='\t')
+	print("-"*10)
+	print("Villutíðni (meðaltal):\t{:.2%}".format(sum(hlutfoll)/len(hlutfoll)))
