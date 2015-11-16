@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import re, collections, csv, editdistance
+import csv, editdistance
 
 word_frequency = {}
 following_word = {}
@@ -30,7 +30,7 @@ def missing_error(num):
 
 def create_dicts(frequency_treshold=0.006):
     #for i in range(79,136):
-    for i in range(79,90):
+    for i in range(79,80):
         if not missing(i):
             prefix = 'althingi_tagged/'
             if i < 100:
@@ -158,7 +158,10 @@ def read_in_test_data():
 #     return 100 - sum(read_in_test_data(frequency_treshold))
 
 create_dicts()
-read_in_test_data()
+print("Press <Enter> to start correcting.")
+while(input() == ""):
+    from correct import read_in_test_data
+    read_in_test_data(word_frequency, following_word, word_count, common_words, rare_words)
 # print("Should return a positive number", count_seen_wordpair('en', 'rétt'))
 # print(following_word['en'].get('sósíalismi'))
 
