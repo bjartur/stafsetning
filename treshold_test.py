@@ -1,4 +1,4 @@
-import csv, editdistance
+import csv, editdistance, time
 max_word_change = 2    # gætum svo prófað max_word_change = 3
 
 # byrjum á að hafa cmbil og rbil tiltölulega stór til að þetta taki ekki langan tíma
@@ -8,46 +8,35 @@ cmbil = 0.0009
 
 # fáum Ncom*Nr langan lista, fjölda tilrauna út frá því
 # höfum Ncom = 40, Nr = 20
-cmstart = 0.0005, cmend = 0.0200, cmbil = 0.0005
+cmstart = 0.0005
+cmend = 0.0200
+cmbil = 0.0005
 Ncom = (cmend-cmstart)/cmbil
-rstart = 0.00001, rend = 0.001, rbil = 0.00004
+rstart = 0.00001
+rend = 0.001
+rbil = 0.00004
 Nr = (rend-rstart)/rbil
 
-thresholds_errors = []
-# verður listi af [treshold_common, treshold_rare, errorsum]
-for treshold_common in range(cmstart, cmend, cmbil):
-	for treshold_rare in range(rstart, rend, rbil):
-		errorsum = sum_read_in_test_data(word_count, word_frequency, following_word, word_count, common_words)       # breytt til að gefa summu 
-		thresholds_errors.append([treshold_common, treshold_rare, errorsum])
-
-minerror = thresholds_errors[0][2]
-for j in range(0,len(thresholds_errors)):
-	if(thresholds_errors[j][2] < minerror):
-    		minerror = thresholds_errors[j][2]
-    		mintresholds = [thresholds_errors[j][0], thresholds_errors[j][1]]
-
-print("common: " + str(mintresholds[0]) + "rare: " + str(mintresholds[1]))
 
 
-
-
-def sum_read_in_test_data(word_count, word_frequency, following_word, word_count, common_words, rare_words):
+def sum_read_in_test_data(word_count, word_frequency, following_word, common_words, rare_words):
     def exists(word):
         return following_word.get(word)
 
-	# Assuming word exists
-	def common(word):
-		return word_frequency > treshold_common/word_count
 
-	# Assuming word exists
-	def rare(word):
-		return word_frequency < treshold_rare/word_count
+# Assuming word exists
+    def common(word):
+        return word_frequency > treshold_common/word_count
+
+    # Assuming word exists
+    def rare(word):
+        return word_frequency < treshold_rare/word_count
 
     def count_seen_wordpair(previous_word, current_word):
         # print previous_word, current_word, "(" + str(following_word[previous_word].get(current_word)) + ")", "times"
         return following_word[previous_word].get(current_word) or 0
-	
-	# Assuming previous_word exists
+
+    # Assuming previous_word exists
     def best_guess(previous_word, current_word):
         least_distance = max_word_change
         guess = ""
@@ -72,24 +61,22 @@ def sum_read_in_test_data(word_count, word_frequency, following_word, word_count
         false_errors = 0
         total_words = 0
         for row in reader:
-			before = time.process_time()
+            before = time.process_time()
             word = row['Word']
             if word == ",":
                 continue
-            if exists(word) and exists(previous_word):
-				if common(word) or common(previous_word) 
-					if rare(word) or rare(previous_word):
-						guess = word
-            elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
+            if exists(word) and exists(prev_word) and (common(word) or common(prev_word)) and (rare(word) or rare(prev_word)):
+                guess = word
+            elif exists(prev_word) and (count_seen_wordpair(prev_word, word) > 0):
                 guess = word
             elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
                 guess = word
             else:
-				# We don't know if prev_word existed.
+                # We don't know if prev_word existed.
 				# So let's use prev_guess to be safe.
                 guess = best_guess(prev_guess, word)
             if not prev_word:
-				# The first word in a sentence.
+                # The first word in a sentence.
                 guess.capitalize()
                 #print("Best guess: ", guess )
                 #print("Correct word: ", correct_word)
@@ -114,6 +101,23 @@ def sum_read_in_test_data(word_count, word_frequency, following_word, word_count
         print("Wrong guesses:", wrong_guesses_percent)
         print("False errors:", false_errors_percent)
         print("Unnoticed errors:", unnoticed_errors_percent)
-		print()
-		print("Duration:", time.process_time() - before) 
+        print()
+        print("Duration:", time.process_time() - before)
         return wrong_guesses_percent + false_errors_percent + unnoticed_errors_percent
+
+thresholds_errors = []
+# verður listi af [treshold_common, treshold_rare, errorsum]
+for treshold_common in range(cmstart, cmend, cmbil):
+        for treshold_rare in range(rstart, rend, rbil):
+            errorsum = sum_read_in_test_data(word_count, word_frequency, following_word, common_words, rare_words)       # breytt til að gefa summu
+            thresholds_errors.append([treshold_common, treshold_rare, errorsum])
+
+minerror = thresholds_errors[0][2]
+for j in range(0,len(thresholds_errors)):
+        if(thresholds_errors[j][2] < minerror):
+            minerror = thresholds_errors[j][2]
+            mintresholds = [thresholds_errors[j][0], thresholds_errors[j][1]]
+
+print("common: " + str(mintresholds[0]) + "rare: " + str(mintresholds[1]))
+
+
