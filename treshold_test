@@ -26,7 +26,7 @@ for j in range(0,len(thresholds_errors)):
     		minerror = thresholds_errors[j][2]
     		mintresholds = [thresholds_errors[j][0], thresholds_errors[j][1]]
 
-print("common: " + str(mintresholds[0]) + "rare: " str(mintresholds[1]))
+print("common: " + str(mintresholds[0]) + "rare: " + str(mintresholds[1]))
 
 
 
