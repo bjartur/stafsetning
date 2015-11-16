@@ -10,11 +10,11 @@ def read_in_test_data(word_count, word_frequency, following_word, word_count, co
 
 	# Assuming word exists
 	def common(word):
-		return word_frequency > treshold_common
+		return word_frequency > treshold_common/word_count
 
 	# Assuming word exists
 	def rare(word):
-		return word_frequency < treshold_rare
+		return word_frequency < treshold_rare/word_count
 
     def count_seen_wordpair(previous_word, current_word):
         # print previous_word, current_word, "(" + str(following_word[previous_word].get(current_word)) + ")", "times"
@@ -22,18 +22,18 @@ def read_in_test_data(word_count, word_frequency, following_word, word_count, co
 	
 	# Assuming previous_word exists
     def best_guess(previous_word, current_word):
-    	least_distance = max_word_change 
-    	guess = ""
-    	if not exists(previous_word):
-    		possibilities = word_frequency
-    	else:
-    		possibilities = following_word[previous_word]
-    	for possibility, freq in possibilities.items():
-    		edit_distance = editdistance.eval(possibility, current_word)
-    		if edit_distance < least_distance:
-    			least_distance = edit_distance
-    			guess = possibility
-    	return guess or current_word
+        least_distance = max_word_change
+        guess = ""
+        if not exists(previous_word):
+            possibilities = word_frequency
+        else:
+            possibilities = following_word[previous_word]
+        for possibility, freq in possibilities.items():
+            edit_distance = editdistance.eval(possibility, current_word)
+            if edit_distance < least_distance:
+                least_distance = edit_distance
+                guess = possibility
+        return guess or current_word
 
     with open('althingi_errors/079.csv', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
