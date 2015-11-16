@@ -1,26 +1,25 @@
-import csv, editdistance
+import csv, editdistance, time
 max_word_change = 1
 treshold_common = 0.005
 treshold_rare   = 0.0001
 
 
-def read_in_test_data(word_count, word_frequency, following_word, word_count, common_words, rare_words):
+def read_in_test_data(word_count, word_frequency, following_word):
     def exists(word):
         return following_word.get(word)
 
-	# Assuming word exists
-	def common(word):
-		return word_frequency > treshold_common/word_count
+    # Assuming word exists
+    def common(word):
+        return word_frequency[word] > treshold_common/word_count
 
-	# Assuming word exists
-	def rare(word):
-		return word_frequency < treshold_rare/word_count
+    # Assuming word exists
+    def rare(word):
+        return word_frequency[word] < treshold_rare/word_count
 
     def count_seen_wordpair(previous_word, current_word):
-        # print previous_word, current_word, "(" + str(following_word[previous_word].get(current_word)) + ")", "times"
         return following_word[previous_word].get(current_word) or 0
 	
-	# Assuming previous_word exists
+    # Assuming previous_word exists
     def best_guess(previous_word, current_word):
         least_distance = max_word_change
         guess = ""
@@ -30,7 +29,7 @@ def read_in_test_data(word_count, word_frequency, following_word, word_count, co
             possibilities = following_word[previous_word]
         for possibility, freq in possibilities.items():
             edit_distance = editdistance.eval(possibility, current_word)
-            if edit_distance < least_distance:
+            if edit_distance <= least_distance:
                 least_distance = edit_distance
                 guess = possibility
         return guess or current_word
@@ -45,30 +44,23 @@ def read_in_test_data(word_count, word_frequency, following_word, word_count, co
         false_errors = 0
         total_words = 0
         for row in reader:
-			before = time.process_time()
+            before = time.process_time()
             word = row['Word']
             if word == ",":
                 continue
-            if exists(word) and exists(previous_word):
-				if common(word) or common(previous_word) 
-					if rare(word) or rare(previous_word):
-						guess = word
+            if exists(word) and exists(prev_word) and (common(word) or common(prev_word)) and (rare(word) or rare(prev_word)):
+                guess = word
             elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
                 guess = word
             elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
                 guess = word
             else:
-				# We don't know if prev_word existed.
+                # We don't know if prev_word existed.
 				# So let's use prev_guess to be safe.
                 guess = best_guess(prev_guess, word)
             if not prev_word:
-				# The first word in a sentence.
+                # The first word in a sentence.
                 guess.capitalize()
-                #print("Best guess: ", guess )
-                #print("Correct word: ", correct_word)
-            #elif word != correct_word:
-                #print("Not a real word error: ", word )
-                #print("Correct word: ", correct_word )
             correct_word = row['CorrectWord']
             if guess != correct_word:
                 if word == guess:
@@ -87,6 +79,6 @@ def read_in_test_data(word_count, word_frequency, following_word, word_count, co
         print("Wrong guesses:", wrong_guesses_percent)
         print("False errors:", false_errors_percent)
         print("Unnoticed errors:", unnoticed_errors_percent)
-		print()
-		print("Duration:", time.process_time() - before) 
+        print()
+        print("Duration:", time.process_time() - before)
         return wrong_guesses_percent, false_errors_percent, unnoticed_errors_percent
