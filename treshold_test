@@ -1,20 +1,23 @@
 import csv, editdistance
 max_word_change = 2    # gætum svo prófað max_word_change = 3
 
+# byrjum á að hafa cmbil og rbil tiltölulega stór til að þetta taki ekki langan tíma
+cmbil = 0.01
+cmbil = 0.0009
+# eyði síðan út 
 
 # fáum Ncom*Nr langan lista, fjölda tilrauna út frá því
 # höfum Ncom = 40, Nr = 20
 cmstart = 0.0005, cmend = 0.0200, cmbil = 0.0005
 Ncom = (cmend-cmstart)/cmbil
-(0.001-0.00001)/0.0002
 rstart = 0.00001, rend = 0.001, rbil = 0.00004
 Nr = (rend-rstart)/rbil
 
 thresholds_errors = []
-# verður listi af treshold_common, treshold_rare, errorsum]
+# verður listi af [treshold_common, treshold_rare, errorsum]
 for treshold_common in range(cmstart, cmend, cmbil):
 	for treshold_rare in range(rstart, rend, rbil):
-		errorsum = read_in_test_data(word_count, word_frequency, following_word, word_count, common_words)       # breytt til að gefa summu 
+		errorsum = sum_read_in_test_data(word_count, word_frequency, following_word, word_count, common_words)       # breytt til að gefa summu 
 		thresholds_errors.append([treshold_common, treshold_rare, errorsum])
 
 minerror = thresholds_errors[0][2]
@@ -28,7 +31,7 @@ print("common: " + str(mintresholds[0]) + "rare: " str(mintresholds[1]))
 
 
 
-def read_in_test_data(word_count, word_frequency, following_word, word_count, common_words, rare_words):
+def sum_read_in_test_data(word_count, word_frequency, following_word, word_count, common_words, rare_words):
     def exists(word):
         return following_word.get(word)
 
