@@ -5,4 +5,4 @@ Forritið gerir ráð fyrir að möppurnar althingi_tagged og althingi_errors s�
 
 
 ## Install editdistance
-    sudo pip install editdistance
+    sudo pip3 install editdistance
