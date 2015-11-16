@@ -8,7 +8,7 @@ following_word = {}
 word_count = 0
 common_words = set()
 rare_words = set()
-rare_word_treshold = 4
+rare_word_treshold = 6
 
 
 # def unicode_csv_reader(utf8_data, dialect=csv.excel, **kwargs):
@@ -22,6 +22,11 @@ def missing(i):
     else:
         return False
 
+def missing_error(num):
+    if num in [83, 86, 87, 88, 98, 104, 109]:
+        return True
+    else:
+        return False
 
 def create_dicts(frequency_treshold=0.006):
     #for i in range(79,136):
@@ -34,6 +39,7 @@ def create_dicts(frequency_treshold=0.006):
                 filename = prefix + str(i) + '.csv'
             with open(filename, newline='', encoding='utf-8') as csvfile:
                 reader = csv.DictReader(csvfile)
+                print ("Creating dict, from file: ", i)
                 prev_word = ""
                 for row in reader:
                     cur_word = row['Word']
@@ -58,10 +64,10 @@ def create_dicts(frequency_treshold=0.006):
     for key, value in word_frequency.items():
         if value / word_count > frequency_treshold:
             common_words.add(key)
-            print("Common word added: ", key)
+            #print("Common word added: ", key)
         if value <= rare_word_treshold:
             rare_words.add(key)
-            print("Rare word: ", key, value)
+            #print("Rare word: ", key, value)
 
 
 def exists(word):
@@ -85,56 +91,68 @@ def best_guess(previous_word, current_word):
         if edit_distance < min_error_count:
             min_error_count = edit_distance
             min_error_word = key
+    if editdistance.eval(min_error_word, current_word) > 1:
+        min_error_word = current_word
     return min_error_word
 
 
 def read_in_test_data():
-    with open('althingi_errors/079.csv', newline='', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile)
-        prev_word = ""
-        prev_guess = ""
-        unnoticed_errors = 0
-        wrong_guesses = 0
-        false_errors = 0
-        total_words = 0
-        for row in reader:
-            word = row['Word']
-            if word == ",":
-                continue
-            if (word in common_words or prev_word in common_words) and (word in rare_words or prev_word in rare_words):
-                guess = word
-            elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
-                guess = word
-            elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
-                guess = word
-            else: # assert exists(prev_guess):
-                guess = best_guess(prev_guess, word)
-            if not prev_word:
-                guess.capitalize()
-                #print("Best guess: ", guess )
-                #print("Correct word: ", correct_word)
-            #elif word != correct_word:
-                #print("Not a real word error: ", word )
-                #print("Correct word: ", correct_word )
-            correct_word = row['CorrectWord']
-            if guess != correct_word:
-                if word == guess:
-                    unnoticed_errors += 1
-                else:
-                    if word == correct_word:
-                        false_errors += 1
-                    else:
-                        wrong_guesses += 1
-            total_words += 1
-            prev_guess = guess
-            prev_word = word
-        wrong_guesses_percent = wrong_guesses/total_words*100
-        false_errors_percent = false_errors/total_words*100
-        unnoticed_errors_percent = unnoticed_errors/total_words*100
-        print("wrong guesses: ", wrong_guesses_percent)
-        print("false errors: ", false_errors_percent)
-        print("unnoticed errors", unnoticed_errors_percent)
-        return wrong_guesses_percent, false_errors_percent, unnoticed_errors_percent
+    #for i in range(79, 110):
+    for i in range(79,80):
+        if not missing(i):
+            prefix = "althingi_errors/"
+            if i < 100:
+                filename = prefix + '0' + str(i) + '.csv'
+            else:
+                filename = prefix + str(i) + '.csv'
+            with open(filename, newline='', encoding='utf-8') as csvfile:
+                reader = csv.DictReader(csvfile)
+                print("Reading error file: ", i)
+                prev_word = ""
+                prev_guess = ""
+                unnoticed_errors = 0
+                wrong_guesses = 0
+                false_errors = 0
+                total_words = 0
+                for row in reader:
+                    word = row['Word']
+                    if word == ",":
+                        continue
+                    if (word in common_words or prev_word in common_words) and (word in rare_words or prev_word in rare_words):
+                        guess = word
+                    elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
+                        guess = word
+                    elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
+                        guess = word
+                    else: # assert exists(prev_guess):
+                        #guess = best_guess(prev_guess, word)
+                        guess = best_guess(prev_word, word)
+                    if not prev_word:
+                        guess.capitalize()
+                        #print("Best guess: ", guess )
+                        #print("Correct word: ", correct_word)
+                    #elif word != correct_word:
+                        #print("Not a real word error: ", word )
+                        #print("Correct word: ", correct_word )
+                    correct_word = row['CorrectWord']
+                    if guess != correct_word:
+                        if word == guess:
+                            unnoticed_errors += 1
+                        else:
+                            if word == correct_word:
+                                false_errors += 1
+                            else:
+                                wrong_guesses += 1
+                    total_words += 1
+                    prev_guess = guess
+                    prev_word = word
+    wrong_guesses_percent = wrong_guesses/total_words*100
+    false_errors_percent = false_errors/total_words*100
+    unnoticed_errors_percent = unnoticed_errors/total_words*100
+    print("wrong guesses: ", wrong_guesses_percent, "%")
+    print("false errors: ", false_errors_percent, "%")
+    print("unnoticed errors", unnoticed_errors_percent, "%")
+    return wrong_guesses_percent, false_errors_percent, unnoticed_errors_percent
 
 # def correctness(frequency_treshold = 0.006):
 #     return 100 - sum(read_in_test_data(frequency_treshold))
