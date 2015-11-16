@@ -13,16 +13,15 @@ Nr = (rend-rstart)/rbil
 thresholds_errors = []
 # verður listi af treshold_common, treshold_rare, errorsum]
 for treshold_common in range(cmstart, cmend, cmbil):
-  for treshold_rare in range(rstart, rend, rbil):
-
-      errorsum = read_in_test_data(word_count, word_frequency, following_word, word_count, common_words)       # breytt til að gefa summu 
-      thresholds_errors.append([treshold_common, treshold_rare, errorsum])
+	for treshold_rare in range(rstart, rend, rbil):
+		errorsum = read_in_test_data(word_count, word_frequency, following_word, word_count, common_words)       # breytt til að gefa summu 
+		thresholds_errors.append([treshold_common, treshold_rare, errorsum])
 
 minerror = thresholds_errors[0][2]
 for j in range(0,len(thresholds_errors)):
-    if(thresholds_errors[j][2] < minerror)
-        minerror = thresholds_errors[j][2]
-        mintresholds = [thresholds_errors[j][0], thresholds_errors[j][1]]
+	if(thresholds_errors[j][2] < minerror):
+    		minerror = thresholds_errors[j][2]
+    		mintresholds = [thresholds_errors[j][0], thresholds_errors[j][1]]
 
 print("common: " + str(mintresholds[0]) + "rare: " str(mintresholds[1]))
 
