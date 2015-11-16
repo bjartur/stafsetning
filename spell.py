@@ -71,9 +71,9 @@ def create_dicts(frequency_treshold=0.006):
 
 create_dicts()
 print("Press <Enter> to start correcting.")
-while(input() == ""):
-	from correct import read_in_test_data
-	read_in_test_data(word_frequency, following_word, word_count, common_words, rare_words)
+while input() == "":
+    from correct import read_in_test_data
+    read_in_test_data(word_frequency, following_word, word_count, common_words, rare_words)
 # print("Should return a positive number", count_seen_wordpair('en', 'rétt'))
 # print(following_word['en'].get('sósíalismi'))
 

@@ -11,18 +11,18 @@ def read_in_test_data(word_frequency, following_word, word_count, common_words, 
         return following_word[previous_word].get(current_word) or 0
 
     def best_guess(previous_word, current_word):
-    	least_distance = max_word_change 
-    	guess = ""
-    	if not exists(previous_word):
-    		possibilities = word_frequency
-    	else:
-    		possibilities = following_word[previous_word]
-    	for possibility, freq in possibilities.items():
-    		edit_distance = editdistance.eval(possibility, current_word)
-    		if edit_distance < least_distance:
-    			least_distance = edit_distance
-    			guess = possibility
-    	return guess or current_word
+        least_distance = max_word_change
+        guess = ""
+        if not exists(previous_word):
+            possibilities = word_frequency
+        else:
+            possibilities = following_word[previous_word]
+        for possibility, freq in possibilities.items():
+            edit_distance = editdistance.eval(possibility, current_word)
+            if edit_distance < least_distance:
+                least_distance = edit_distance
+                guess = possibility
+        return guess or current_word
 
     with open('althingi_errors/079.csv', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
