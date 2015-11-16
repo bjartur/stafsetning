@@ -1,10 +1,11 @@
 import csv, editdistance, time
 max_word_change = 1
 treshold_common = 0.005
-treshold_rare   = 0.0001
+treshold_rare   = 0.001
 
 
 def read_in_test_data(word_count, word_frequency, following_word):
+    #print("Yay!")
     def exists(word):
         return following_word.get(word)
 

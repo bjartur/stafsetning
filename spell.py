@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import csv
+import importlib, correct
 
 word_frequency = {}
 following_word = {}
@@ -17,7 +18,7 @@ def missing(i):
 
 
 def create_dicts():
-    for i in range(79,81):
+    for i in range(79,80):
         if not missing(i):
             prefix = 'althingi_tagged/'
             if i < 100:
@@ -49,7 +50,9 @@ def create_dicts():
                     word_count += 1
 
 create_dicts()
-print("Press <Enter> to start correcting.")
+correct.read_in_test_data(word_count, word_frequency, following_word)
+print("Press <Enter> to retry correcting, or type q<Enter> to quit..")
 while input() == "":
-    from correct import read_in_test_data
-    read_in_test_data(word_count, word_frequency, following_word)
+    importlib.reload(correct)
+    correct.read_in_test_data(word_count, word_frequency, following_word)
+    print("Press <Enter> to retry correcting, or type q<Enter> to quit..")
