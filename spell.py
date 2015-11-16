@@ -6,8 +6,8 @@ import csv, editdistance
 word_frequency = {}
 following_word = {}
 word_count = 0
-common_words = set()
-rare_words = set()
+#common_words = set()
+#rare_words = set()
 rare_word_treshold = 4
 
 
@@ -23,9 +23,10 @@ def missing(i):
         return False
 
 
-def create_dicts(frequency_treshold=0.006):
+def create_dicts():
     #for i in range(79,136):
-    for i in range(79,80):
+    times = []
+    for i in range(79,81):
         if not missing(i):
             prefix = 'althingi_tagged/'
             if i < 100:
@@ -55,13 +56,13 @@ def create_dicts(frequency_treshold=0.006):
                     prev_word = cur_word
                     global word_count
                     word_count += 1
-    for key, value in word_frequency.items():
-        if value / word_count > frequency_treshold:
-            common_words.add(key)
-            print("Common word added: ", key)
-        if value <= rare_word_treshold:
-            rare_words.add(key)
-            print("Rare word: ", key, value)
+#   for key, value in word_frequency.items():
+#       if value / word_count > frequency_treshold:
+#           common_words.add(key)
+#           print("Common word added: ", key)
+#       if value <= rare_word_treshold:
+#           rare_words.add(key)
+#           print("Rare word: ", key, value)
 
 
 
@@ -73,7 +74,7 @@ create_dicts()
 print("Press <Enter> to start correcting.")
 while(input() == ""):
 	from correct import read_in_test_data
-	read_in_test_data(word_frequency, following_word, word_count, common_words, rare_words)
+	read_in_test_data(word_count, word_frequency, following_word, word_count, common_words, rare_words)
 # print("Should return a positive number", count_seen_wordpair('en', 'rétt'))
 # print(following_word['en'].get('sósíalismi'))
 
