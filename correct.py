@@ -20,15 +20,19 @@ def read_in_test_data(word_count, word_frequency, following_word):
                     pre = word[:i]
                     suf = word[i+1:]
                     new_word = pre + "í" + suf
+                    if exists(word):
+                        return word
                     if exists(new_word):
-                        print("i errors: ", word, new_word)
+                        #print("i errors: ", word, new_word)
                         return new_word
                 if word[i] == "í":
                     pre = word[:i]
                     suf = word[i+1:]
                     new_word = pre + "i" + suf
+                    if exists(word):
+                        return word
                     if exists(new_word):
-                        print("í errors: ", word, new_word)
+                        #print("í errors: ", word, new_word)
                         return new_word
             return word
 
@@ -94,7 +98,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
             #print("pg, pw, w: ", prev_guess, prev_word, word)
         if not prev_word:
             # The first word in a sentence.
-            guess.capitalize()
+            guess = guess.capitalize()
         return guess
 
 
@@ -131,11 +135,14 @@ def read_in_test_data(word_count, word_frequency, following_word):
             correct_word = row['CorrectWord']
             if guess != correct_word:
                 if word == guess:
+                    print("unnoticed error: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
                     unnoticed_errors += 1
                 else:
                     if word == correct_word:
+                        print("false error: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
                         false_errors += 1
                     else:
+                        print("wrong guess: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
                         wrong_guesses += 1
             total_words += 1
             prev_guess = guess

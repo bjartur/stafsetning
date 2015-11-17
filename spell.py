@@ -25,8 +25,9 @@ def missing_error(num):
 def most_common_ocr_error(word):
     if word == "i":
         return "í"
-    else:
-        return word
+    elif word == "ekkí":
+        return "ekki"
+    return word
 
 def read_files():
     for i in range(79,81):
