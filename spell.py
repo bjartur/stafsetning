@@ -16,21 +16,33 @@ def missing(i):
     else:
         return False
 
+def missing_error(num):
+    if num in [83, 86, 87, 88, 98, 104, 109]:
+        return True
+    else:
+        return False
+
+def common_ocr_errors(word):
+    if word == "i":
+        return "í"
+    else:
+        return word
 
 def read_files():
     for i in range(79,81):
-        if not missing(i):
-            prefix = 'althingi_tagged/'
+        if not missing_error(i):
+            prefix = 'althingi_errors/'
             if i < 100:
                 filename = prefix + '0' + str(i) + '.csv'
             else:
                 filename = prefix + str(i) + '.csv'
             with open(filename, newline='', encoding='utf-8') as csvfile:
                 reader = csv.DictReader(csvfile)
-                print("Creating dict from althingi tagged nr: ", i)
+                print("Creating dict from althingi error nr: ", i)
                 prev_word = ""
                 for row in reader:
-                    prev_word = create_dicts(prev_word, row['Word'])
+                    word = common_ocr_errors(row['CorrectWord'])
+                    prev_word = create_dicts(prev_word, word)
 
 
 def create_dicts(prev_word, cur_word):

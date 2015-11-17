@@ -4,6 +4,12 @@ max_word_change = 1
 treshold_common = 0.005
 treshold_rare   = 0.001
 
+def common_ocr_errors(word):
+    if word == "i":
+        return "í"
+    else:
+        return word
+
 
 def read_in_test_data(word_count, word_frequency, following_word):
     def exists(word):
@@ -50,6 +56,9 @@ def read_in_test_data(word_count, word_frequency, following_word):
         # elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
         #     guess = word
         guess = ""
+        prev_word = common_ocr_errors(prev_word)
+        prev_guess = common_ocr_errors(prev_guess)
+        word = common_ocr_errors(word)
         if exists(word):
             if exists(prev_word):
                 if error_free(prev_word, word):
