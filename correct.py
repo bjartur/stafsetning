@@ -19,7 +19,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
     def count_seen_wordpair(previous_word, current_word):
         return following_word[previous_word].get(current_word) or 0
 
-    def create_guess(prev_word, word):
+    def create_guess(prev_word, prev_guess, word):
         if exists(word) and exists(prev_word) and (common(word) or common(prev_word)) and (rare(word) or rare(prev_word)):
             guess = word
         elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
@@ -30,6 +30,39 @@ def read_in_test_data(word_count, word_frequency, following_word):
             # We don't know if prev_word existed.
             # So let's use prev_guess to be safe.
             guess = best_guess(prev_guess, word)
+        if not prev_word:
+            # The first word in a sentence.
+            guess.capitalize()
+        return guess
+
+
+    def error_free(prev_word, word):
+        if count_seen_wordpair(prev_word, word):
+            return True
+
+
+    def create_guess_v2(prev_word, prev_guess, word):
+        # if (exists(word) and exists(prev_word)) and (common(word) or common(prev_word)) and (rare(word) or rare(prev_word)):
+        #     guess = word
+        # elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
+        #     guess = word
+        # elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
+        #     guess = word
+        guess = ""
+        if exists(word):
+            if exists(prev_word):
+                if error_free(prev_word, word):
+                    guess = word
+        else:
+            # We don't know if prev_word existed.
+            # So let's use prev_guess to be safe.
+            if exists(prev_word):
+                guess = best_guess(prev_word, word)
+            else:
+                guess = best_guess(prev_guess, word)
+        if not guess:
+            guess = word
+            print("pg, pw, w: ", prev_guess, prev_word, word)
         if not prev_word:
             # The first word in a sentence.
             guess.capitalize()
@@ -63,9 +96,9 @@ def read_in_test_data(word_count, word_frequency, following_word):
 
         for row in reader:
             word = row['Word']
-            if word == ",":
+            if word == "," or "":
                 continue
-            guess = create_guess(prev_word, word)
+            guess = create_guess_v2(prev_word, prev_guess, word)
             correct_word = row['CorrectWord']
             if guess != correct_word:
                 if word == guess:
@@ -84,6 +117,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
         print("Wrong guesses:", wrong_guesses_percent)
         print("False errors:", false_errors_percent)
         print("Unnoticed errors:", unnoticed_errors_percent)
+        print("Total error:", wrong_guesses_percent + false_errors_percent + unnoticed_errors_percent)
         print()
         print("Duration:", time.process_time() - before)
         return wrong_guesses_percent, false_errors_percent, unnoticed_errors_percent
