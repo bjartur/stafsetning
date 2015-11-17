@@ -67,6 +67,11 @@ def read_in_test_data(word_count, word_frequency, following_word):
 
 
     def create_guess_v2(prev_word, prev_guess, word):
+        if word.find('--') > 0:
+            word = word.replace('---', '-')
+            word = word.replace('--', '-')
+        elif word.find('--') == 0:
+            word.replace('--', '---')
         # if (exists(word) and exists(prev_word)) and (common(word) or common(prev_word)) and (rare(word) or rare(prev_word)):
         #     guess = word
         # elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
