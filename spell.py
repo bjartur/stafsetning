@@ -27,6 +27,8 @@ def most_common_ocr_error(word):
         return "í"
     elif word == "ekkí":
         return "ekki"
+    elif word == "Reykjavik":
+        return "Reykjavík"
     return word
 
 def read_files():
