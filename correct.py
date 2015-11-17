@@ -54,13 +54,10 @@ def read_in_test_data(word_count, word_frequency, following_word):
             # We don't know if prev_word existed.
             # So let's use prev_guess to be safe.
             guess = best_guess(prev_guess, word)
-        if not prev_word:
-            # The first word in a sentence.
-            guess.capitalize()
         return guess
 
 
-    def error_free(prev_word, word):
+    def seen(prev_word, word):
         if count_seen_wordpair(prev_word, word):
             return True
 
@@ -78,7 +75,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
         # word = common_ocr_errors(word)
         if exists(word):
             if exists(prev_word):
-                if error_free(prev_word, word):
+                if seen(prev_word, word):
                     guess = word
         else:
             word = common_ocr_errors(word)
