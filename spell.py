@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import csv
+import importlib, correct
 
 word_frequency = {}
 following_word = {}
@@ -54,7 +55,11 @@ def create_dicts(prev_word, cur_word):
     return prev_word
 
 read_files()
-print("Press <Enter> to start correcting.")
+
+correct.read_in_test_data(word_count, word_frequency, following_word)
+
+print("Press <Enter> to retry correcting, or type q<Enter> to quit..")
 while input() == "":
-    from correct import read_in_test_data
-    read_in_test_data(word_count, word_frequency, following_word)
+    importlib.reload(correct)
+    correct.read_in_test_data(word_count, word_frequency, following_word)
+    print("Press <Enter> to retry correcting, or type q<Enter> to quit..")
