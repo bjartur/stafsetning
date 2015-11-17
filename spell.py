@@ -8,6 +8,7 @@ word_frequency = {}
 following_word = {}
 word_count = 0
 rare_word_treshold = 4
+ordmyndir = []
 
 
 def missing(i):
@@ -78,3 +79,11 @@ while input() == "":
     importlib.reload(correct)
     correct.read_in_test_data(word_count, word_frequency, following_word)
     print("Press <Enter> to retry correcting, or type q<Enter> to quit..")
+
+
+# import csv
+# with open('eggs.csv', 'w', newline='') as csvfile:
+#     spamwriter = csv.writer(csvfile, delimiter=' ',
+#                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
+#     spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
+#     spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])
