@@ -14,7 +14,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
             return "í"
         if word in [":", "(", ")", ";", ".", ","]:
             return word
-        if word == "-":
+        if word == "-" or "--":
             return "---"
         else:
             for i in range(len(word)):
