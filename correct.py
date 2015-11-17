@@ -12,8 +12,10 @@ def read_in_test_data(word_count, word_frequency, following_word):
     def common_ocr_errors(word):
         if word == "i":
             return "í"
-        if word in [":", "(", ")", ";", ".", ",","-"]:
+        if word in [":", "(", ")", ";", ".", ","]:
             return word
+        if word == "-":
+            return "---"
         else:
             for i in range(len(word)):
                 if word[i] == "i":
