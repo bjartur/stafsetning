@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import csv, editdistance, time
+from itertools import chain
 max_word_change = 1
 treshold_common = 0.005
 treshold_rare   = 0.001
@@ -70,9 +71,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
         if word.find('--') > 0:
             word = word.replace('---', '-')
             word = word.replace('--', '-')
-        elif word.find('--') == 0:
-            word = word.replace('--', '---')
-        elif word == '-':
+        elif word in ['--', '---']:
             word = '---'
         # if (exists(word) and exists(prev_word)) and (common(word) or common(prev_word)) and (rare(word) or rare(prev_word)):
         #     guess = word
@@ -103,6 +102,11 @@ def read_in_test_data(word_count, word_frequency, following_word):
         if not prev_word:
             # The first word in a sentence.
             guess = guess.capitalize()
+            i = guess.find('-')
+            if i > 0:
+                former = guess[:i+1]
+                latter = guess[i+1:].capitalize()
+                guess = former + latter
         return guess
 
 
