@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import csv
 import importlib, correct
 
@@ -30,7 +29,7 @@ def most_common_ocr_error(word):
     return word
 
 def read_files():
-    for i in range(79,81):
+    for i in [79,81]:
         if not missing_error(i):
             prefix = 'althingi_errors/'
             if i < 100:

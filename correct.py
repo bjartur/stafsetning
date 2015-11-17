@@ -1,41 +1,53 @@
 #!/usr/bin/python3
 import csv, editdistance, time
 from itertools import chain
-max_word_change = 1
+max_change_context = 1
+max_change_optical = 2
 treshold_common = 0.005
 treshold_rare   = 0.001
+confusing_letters = {
+        'i': ['í', 'l', 'I'],
+        'í': ['i', 'l', 'I', 'f'],
+        'l': ['i', 'í', 'I', '1'],
+        '1': ['l', 'I', 'i'],
+        '6': ['ó'],
+        'ó': ['6'],
+        'f': ['í','l','I'],
+        'I': ['l', 'í', 'i', 'Í', '1'],
+        'c': ['e'],
+        'e': ['c'],
+        'a': ['s'],
+        's': ['a'],
+        'þ': ['b'],
+        'Þ': ['þ', 'b']
+        }
 
 
 def read_in_test_data(word_count, word_frequency, following_word):
     def exists(word):
         return following_word.get(word)
 
+    def skipta(word, i, becomes):
+        return word[:i] + becomes + word[i+1:]
+
+    def fikta(word, confusing, level=1):
+        for i in range(len(word)):
+            letter = word[i].lower()
+            if letter in confusing:
+                for alternative in confusing[letter]:
+                    new = skipta(word, i, alternative)
+                    if exists(new):
+                        return new
+                    elif level < max_change_optical:
+                        new = fikta(word, confusing, level+1)
+                        if exists(new):
+                            return new
+
     def common_ocr_errors(word):
-        if word == "i":
-            return "í"
-        if word in [":", "(", ")", ";", ".", ","]:
+        if exists(word) or word in [":", "(", ")", ";", ".", ","]:
             return word
         else:
-            for i in range(len(word)):
-                if word[i] == "i":
-                    pre = word[:i]
-                    suf = word[i+1:]
-                    new_word = pre + "í" + suf
-                    if exists(word):
-                        return word
-                    if exists(new_word):
-                        #print("i errors: ", word, new_word)
-                        return new_word
-                if word[i] == "í":
-                    pre = word[:i]
-                    suf = word[i+1:]
-                    new_word = pre + "i" + suf
-                    if exists(word):
-                        return word
-                    if exists(new_word):
-                        #print("í errors: ", word, new_word)
-                        return new_word
-            return word
+            return fikta(word, confusing_letters) or word
 
     # Assuming word exists
     def common(word):
@@ -60,7 +72,6 @@ def read_in_test_data(word_count, word_frequency, following_word):
             # So let's use prev_guess to be safe.
             guess = best_guess(prev_guess, word)
         return guess
-
 
     def seen(prev_word, word):
         if count_seen_wordpair(prev_word, word):
@@ -99,7 +110,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
             guess = common_ocr_errors(word)
             #uess = word
             #print("pg, pw, w: ", prev_guess, prev_word, word)
-        if not prev_word:
+        if prev_word == ".":
             # The first word in a sentence.
             guess = guess.capitalize()
             i = guess.find('-')
@@ -112,7 +123,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
 
     # Assuming previous_word exists
     def best_guess(previous_word, current_word):
-        least_distance = max_word_change
+        least_distance = max_change_context
         guess = ""
         if not exists(previous_word):
             possibilities = word_frequency
@@ -125,7 +136,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
                 guess = possibility
         return guess or current_word
 
-    with open('althingi_errors/079.csv', newline='', encoding='utf-8') as csvfile:
+    with open('althingi_errors/091.csv', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         prev_word = ""
         prev_guess = ""
@@ -137,7 +148,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
 
         for row in reader:
             word = row['Word']
-            if word == "," or "":
+            if word in [",", ""]:
                 continue
             guess = create_guess_v2(prev_word, prev_guess, word)
             correct_word = row['CorrectWord']
