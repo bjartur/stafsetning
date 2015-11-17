@@ -4,16 +4,33 @@ max_word_change = 1
 treshold_common = 0.005
 treshold_rare   = 0.001
 
-def common_ocr_errors(word):
-    if word == "i":
-        return "í"
-    else:
-        return word
-
 
 def read_in_test_data(word_count, word_frequency, following_word):
     def exists(word):
         return following_word.get(word)
+
+    def common_ocr_errors(word):
+        if word == "i":
+            return "í"
+        if word in [":", "(", ")", ";", ".", ",","-"]:
+            return word
+        else:
+            for i in range(len(word)):
+                if word[i] == "i":
+                    pre = word[:i]
+                    suf = word[i+1:]
+                    new_word = pre + "í" + suf
+                    if exists(new_word):
+                        print("i errors: ", word, new_word)
+                        return new_word
+                if word[i] == "í":
+                    pre = word[:i]
+                    suf = word[i+1:]
+                    new_word = pre + "i" + suf
+                    if exists(new_word):
+                        print("í errors: ", word, new_word)
+                        return new_word
+            return word
 
     # Assuming word exists
     def common(word):
@@ -56,14 +73,15 @@ def read_in_test_data(word_count, word_frequency, following_word):
         # elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
         #     guess = word
         guess = ""
-        prev_word = common_ocr_errors(prev_word)
-        prev_guess = common_ocr_errors(prev_guess)
-        word = common_ocr_errors(word)
+        # prev_word = common_ocr_errors(prev_word)
+        # prev_guess = common_ocr_errors(prev_guess)
+        # word = common_ocr_errors(word)
         if exists(word):
             if exists(prev_word):
                 if error_free(prev_word, word):
                     guess = word
         else:
+            word = common_ocr_errors(word)
             # We don't know if prev_word existed.
             # So let's use prev_guess to be safe.
             if exists(prev_word):
@@ -71,8 +89,9 @@ def read_in_test_data(word_count, word_frequency, following_word):
             else:
                 guess = best_guess(prev_guess, word)
         if not guess:
-            guess = word
-            print("pg, pw, w: ", prev_guess, prev_word, word)
+            guess = common_ocr_errors(word)
+            #uess = word
+            #print("pg, pw, w: ", prev_guess, prev_word, word)
         if not prev_word:
             # The first word in a sentence.
             guess.capitalize()

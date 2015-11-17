@@ -22,7 +22,7 @@ def missing_error(num):
     else:
         return False
 
-def common_ocr_errors(word):
+def most_common_ocr_error(word):
     if word == "i":
         return "í"
     else:
@@ -41,7 +41,7 @@ def read_files():
                 print("Creating dict from althingi error nr: ", i)
                 prev_word = ""
                 for row in reader:
-                    word = common_ocr_errors(row['CorrectWord'])
+                    word = most_common_ocr_error(row['CorrectWord'])
                     prev_word = create_dicts(prev_word, word)
 
 
