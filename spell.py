@@ -32,20 +32,13 @@ def most_common_ocr_error(word):
     return word
 
 def read_files():
-    for i in [79,81]:
-        if not missing_error(i):
-            prefix = 'althingi_errors/'
-            if i < 100:
-                filename = prefix + '0' + str(i) + '.csv'
-            else:
-                filename = prefix + str(i) + '.csv'
-            with open(filename, newline='', encoding='utf-8') as csvfile:
-                reader = csv.DictReader(csvfile)
-                print("Creating dict from althingi error nr: ", i)
-                prev_word = ""
-                for row in reader:
-                    word = most_common_ocr_error(row['CorrectWord'])
-                    prev_word = create_dicts(prev_word, word)
+    with open("known_errors.csv", newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        print("Creating dict from known_corrections.csv")
+        prev_word = ""
+        for row in reader:
+            word = most_common_ocr_error(row['CorrectWord'])
+            prev_word = create_dicts(prev_word, word)
 
 
 def create_dicts(prev_word, cur_word):
