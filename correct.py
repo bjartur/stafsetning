@@ -1,27 +1,11 @@
 #!/usr/bin/python3
 import csv, editdistance, time
 from itertools import chain
+import train
 max_change_context = 1
 max_change_optical = 2
 treshold_common = 0.005
 treshold_rare   = 0.001
-confusing_letters = {
-        'i': ['í', 'l', 'I'],
-        'í': ['i', 'l', 'I', 'f'],
-        'l': ['i', 'í', 'I', '1'],
-        '1': ['l', 'I', 'i'],
-        '6': ['ó'],
-        'ó': ['6'],
-        'f': ['í','l','I'],
-        'I': ['l', 'í', 'i', 'Í', '1'],
-        'c': ['e'],
-        'e': ['c'],
-        'a': ['s'],
-        's': ['a'],
-        'þ': ['b'],
-        'Þ': ['þ', 'b']
-        }
-
 
 def read_in_test_data(word_count, word_frequency, following_word):
     def exists(word):
@@ -43,7 +27,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
                         if exists(new):
                             return new
 
-    def common_ocr_errors(word):
+    def common_ocr_errors(word, confusing_letters):
         if exists(word) or word in [":", "(", ")", ";", ".", ","]:
             return word
         else:
@@ -99,7 +83,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
                 if seen(prev_word, word):
                     guess = word
         else:
-            word = common_ocr_errors(word)
+            word = common_ocr_errors(word, confusing_letters)
             # We don't know if prev_word existed.
             # So let's use prev_guess to be safe.
             if exists(prev_word):
@@ -107,7 +91,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
             else:
                 guess = best_guess(prev_guess, word)
         if not guess:
-            guess = common_ocr_errors(word)
+            guess = common_ocr_errors(word, confusing_letters)
             #uess = word
             #print("pg, pw, w: ", prev_guess, prev_word, word)
         if prev_word == ".":
@@ -136,7 +120,8 @@ def read_in_test_data(word_count, word_frequency, following_word):
                 guess = possibility
         return guess or current_word
 
-    with open('althingi_errors/091.csv', newline='', encoding='utf-8') as csvfile:
+    confusing_letters = train.characterwise(range(79,81))
+    with open('althingi_errors/079.csv', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         prev_word = ""
         prev_guess = ""

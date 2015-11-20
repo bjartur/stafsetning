@@ -31,11 +31,11 @@
 \maketitle
 
 \begin{abstract}
-Forrit sem lærir stafsetningu af lestri Alþingisræða. Leiðréttir stafsetningu ekki bara einstakra orða, heldur einnig orðasambanda og orðapara almennt. Til dæmis hafa tvö íslensk orð „leiti“ sem orðmynd, og eitt hefur „leyti“. Þessum orðum er oft ruglað saman, enda enginn munur í framburði og lítill í stafsetningu. Ómögulegt er að átta sig á merkingu slíks orðs þegar það stendur eitt og sér ef möguleiki er á ritvillu. Örlítið samhengi dugar til.
+    Forrit sem lærir að leiðrétta stafsetningu með því að lesa Alþingisræður og leiðréttingar. Leiðréttir bæði ritvillur einstakra orða og stafsetningarvillur í orðasamböndum (réttara sagt orðapörum). Til dæmis hafa tvö íslensk orð „leiti“ sem orðmynd, og eitt hefur „leyti“. Þessum orðum er oft ruglað saman, enda enginn munur í framburði og lítill í stafsetningu. Ómögulegt er að átta sig á merkingu slíks orðs þegar það stendur eitt og sér ef möguleiki er á ritvillu. Orðið á undan sker þó oftast út um meininguna.
 
 \begin{verse}Þó orðin séu tvíræð þegar þau standa ein samsinnir meira að segja Gróa \orðapar{á leiti} að \orðapar{öllu leyti} að \orðapar{börn leiti} í umhyggju og athygli.\end{verse}
 
-Þarna dugar orðið á undan til að taka af allan vafa um merkingu tvíræða orðsins á eftir. Forritið þekkir gífurlegan fjölda orðapara. Til dæmis \orðapar{horfið frá}, \orðapar{skolast í} og \orðapar{eftir því}.
+Þarna dugar orðið á undan til að taka af allan vafa um merkingu tvíræða orðsins á eftir. Forritið þekkir gífurlegan fjölda orðapara. Til dæmis \orðapar{horfið frá}, \orðapar{skolast í} og \orðapar{eftir því}. Ef óþekkt orðapar verður á vegi forritsins athugar það hvort 
 \end{abstract}
 \pagestyle{empty}
 
