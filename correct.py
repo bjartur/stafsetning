@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
 import csv, editdistance, time
 from itertools import chain
 import train
@@ -30,6 +31,8 @@ def read_in_test_data(word_count, word_frequency, following_word):
     def common_ocr_errors(word, confusing_letters):
         if exists(word) or word in [":", "(", ")", ";", ".", ","]:
             return word
+        if word == "-" or word == "--":
+            return "---"
         else:
             return fikta(word, confusing_letters) or word
 
@@ -57,27 +60,20 @@ def read_in_test_data(word_count, word_frequency, following_word):
             guess = best_guess(prev_guess, word)
         return guess
 
+
     def seen(prev_word, word):
         if count_seen_wordpair(prev_word, word):
             return True
 
 
-    def create_guess_v2(prev_word, prev_guess, word):
+    def create_guess_v2(confusing_letters, prev_word, prev_guess, word):
         if word.find('--') > 0:
             word = word.replace('---', '-')
             word = word.replace('--', '-')
         elif word in ['--', '---']:
             word = '---'
-        # if (exists(word) and exists(prev_word)) and (common(word) or common(prev_word)) and (rare(word) or rare(prev_word)):
-        #     guess = word
-        # elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
-        #     guess = word
-        # elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
-        #     guess = word
+
         guess = ""
-        # prev_word = common_ocr_errors(prev_word)
-        # prev_guess = common_ocr_errors(prev_guess)
-        # word = common_ocr_errors(word)
         if exists(word):
             if exists(prev_word):
                 if seen(prev_word, word):
@@ -130,27 +126,30 @@ def read_in_test_data(word_count, word_frequency, following_word):
         false_errors = 0
         total_words = 0
         before = time.process_time()
-
-        for row in reader:
-            word = row['Word']
-            if word in [",", ""]:
-                continue
-            guess = create_guess_v2(prev_word, prev_guess, word)
-            correct_word = row['CorrectWord']
-            if guess != correct_word:
-                if word == guess:
-                    print("unnoticed error: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
-                    unnoticed_errors += 1
-                else:
-                    if word == correct_word:
-                        print("false error: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
-                        false_errors += 1
+        with open('result.csv', 'w', newline='') as csvresultfile:
+            writer = csv.writer(csvresultfile)
+            writer.writerow(['Word', 'Tag', 'Lemma', 'CorrectWord'])
+            for row in reader:
+                word = row['Word']
+                if word in [",", ""]:
+                    continue
+                guess = create_guess_v2(confusing_letters, prev_word, prev_guess, word)
+                writer.writerow([row['Word'], row['Tag'],row['Lemma'],guess])
+                correct_word = row['CorrectWord']
+                if guess != correct_word:
+                    if word == guess:
+                        print("unnoticed error: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
+                        unnoticed_errors += 1
                     else:
-                        print("wrong guess: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
-                        wrong_guesses += 1
-            total_words += 1
-            prev_guess = guess
-            prev_word = word
+                        if word == correct_word:
+                            print("false error: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
+                            false_errors += 1
+                        else:
+                            print("wrong guess: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
+                            wrong_guesses += 1
+                total_words += 1
+                prev_guess = guess
+                prev_word = word
         wrong_guesses_percent = wrong_guesses/total_words*100
         false_errors_percent = false_errors/total_words*100
         unnoticed_errors_percent = unnoticed_errors/total_words*100
