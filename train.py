@@ -6,7 +6,8 @@ min_err_freq = 8
 character_freq = {}
 
 def clean(correction):
-    return {k: v for k, v in correction.items() if v >= min_err_freq}
+    common_corrections = {k: v for k, v in correction.items() if v >= min_err_freq}
+    return sorted(common_corrections.keys(), key=common_corrections.get, reverse=True)
 
 
 def count(character):
