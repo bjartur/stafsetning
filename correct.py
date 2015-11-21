@@ -15,89 +15,52 @@ def read_in_test_data(word_count, word_frequency, following_word):
     def skipta(word, i, becomes):
         return word[:i] + becomes + word[i+1:]
 
-    def fikta(word, confusing, level=1):
-        for i in range(len(word)):
-            letter = word[i].lower()
-            if letter in confusing:
-                for alternative in confusing[letter]:
-                    new = skipta(word, i, alternative)
-                    if exists(new):
-                        return new
-                    elif level < max_change_optical:
-                        new = fikta(word, confusing, level+1)
+    def ocr_correction(word, confusing, similar, level=1):
+        for c in confusing:
+            for i, letter in enumerate(word):
+                if letter == c:
+                    for alternative in similar[letter]:
+                        new = skipta(word, i, alternative)
                         if exists(new):
                             return new
-
-    def common_ocr_errors(word, confusing_letters):
-        if exists(word) or word in [":", "(", ")", ";", ".", ","]:
-            return word
-        if word == "-" or word == "--":
-            return "---"
-        else:
-            return fikta(word, confusing_letters) or word
-
-    # Assuming word exists
-    def common(word):
-        return word_frequency[word] > treshold_common/word_count
-
-    # Assuming word exists
-    def rare(word):
-        return word_frequency[word] < treshold_rare/word_count
+                        elif level < max_change_optical:
+                            new = ocr_correction(word, confusing, similar, level+1)
+                            if exists(new):
+                                return new
 
     def count_seen_wordpair(previous_word, current_word):
         return following_word[previous_word].get(current_word) or 0
-
-    def create_guess(prev_word, prev_guess, word):
-        if exists(word) and exists(prev_word) and (common(word) or common(prev_word)) and (rare(word) or rare(prev_word)):
-            guess = word
-        elif exists(prev_word) and count_seen_wordpair(prev_word, word) > 0:
-            guess = word
-        elif prev_guess != prev_word and count_seen_wordpair(prev_guess, word) > 0:
-            guess = word
-        else:
-            # We don't know if prev_word existed.
-            # So let's use prev_guess to be safe.
-            guess = best_guess(prev_guess, word)
-        return guess
-
 
     def seen(prev_word, word):
         if count_seen_wordpair(prev_word, word):
             return True
 
-
-    def create_guess_v2(confusing_letters, prev_word, prev_guess, word):
-        if word.find('--') > 0:
-            word = word.replace('---', '-')
-            word = word.replace('--', '-')
-        elif word in ['--', '---']:
-            word = '---'
-
-        guess = ""
-        if exists(word):
-            if exists(prev_word):
-                if seen(prev_word, word):
-                    guess = word
+    def make_guess(confusing, similar, prev_word, prev_guess, word):
+        if word.find('--') == 0:
+            guess = '---'
+        elif word.find('--') > 0:
+            guess = word.replace('---', '-').replace('--', '-')
+        elif exists(word) or word in [":", "(", ")", ";", ".", ","]:
+            guess = word
         else:
-            word = common_ocr_errors(word, confusing_letters)
-            # We don't know if prev_word existed.
-            # So let's use prev_guess to be safe.
-            if exists(prev_word):
-                guess = best_guess(prev_word, word)
-            else:
-                guess = best_guess(prev_guess, word)
-        if not guess:
-            guess = common_ocr_errors(word, confusing_letters)
-            #uess = word
-            #print("pg, pw, w: ", prev_guess, prev_word, word)
-        if prev_word == ".":
-            # The first word in a sentence.
-            guess = guess.capitalize()
-            i = guess.find('-')
-            if i > 0:
-                former = guess[:i+1]
-                latter = guess[i+1:].capitalize()
-                guess = former + latter
+            guess = ocr_correction(word, confusing, similar)
+            if guess is None:
+                if exists(prev_word):
+                    guess = best_guess(prev_word, word)
+                else:
+                    guess = best_guess(prev_guess, word)
+            if not guess:
+                guess = word
+                #uess = word
+                #print("pg, pw, w: ", prev_guess, prev_word, word)
+            if prev_word == ".":
+                # The first word in a sentence.
+                guess = guess.capitalize()
+                i = guess.find('-')
+                if i > 0:
+                    former = guess[:i+1]
+                    latter = guess[i+1:].capitalize()
+                    guess = former + latter
         return guess
 
 
@@ -116,8 +79,8 @@ def read_in_test_data(word_count, word_frequency, following_word):
                 guess = possibility
         return guess or current_word
 
-    confusing_letters = train.characterwise(range(79,81))
-    with open('althingi_errors/079.csv', newline='', encoding='utf-8') as csvfile:
+    confusing, similar = train.characterwise(range(82,83))
+    with open('althingi_errors/084.csv', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         prev_word = ""
         prev_guess = ""
@@ -133,7 +96,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
                 word = row['Word']
                 if word in [",", ""]:
                     continue
-                guess = create_guess_v2(confusing_letters, prev_word, prev_guess, word)
+                guess = make_guess(confusing, similar, prev_word, prev_guess, word)
                 writer.writerow([row['Word'], row['Tag'],row['Lemma'],guess])
                 correct_word = row['CorrectWord']
                 if guess != correct_word:

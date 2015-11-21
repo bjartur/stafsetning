@@ -22,22 +22,13 @@ def missing_error(num):
     else:
         return False
 
-def most_common_ocr_error(word):
-    if word == "i":
-        return "í"
-    elif word == "ekkí":
-        return "ekki"
-    elif word == "Reykjavik":
-        return "Reykjavík"
-    return word
-
 def read_files():
     with open("known_errors.csv", newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         print("Creating dict from known_corrections.csv")
         prev_word = ""
         for row in reader:
-            word = most_common_ocr_error(row['CorrectWord'])
+            word = row['CorrectWord']
             prev_word = create_dicts(prev_word, word)
 
 
