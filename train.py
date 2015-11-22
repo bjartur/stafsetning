@@ -1,23 +1,19 @@
 import csv
 from pprint import pprint
+from constants import *
 
-min_err_freq = 8
 
-character_freq = {}
-
+# skilar þeim lyklagildispörum þar sem gildið er a.m.k. min_err_freq
 def clean(correction):
     return { k: v for k, v in correction.items() if v >= min_err_freq }
 
+# skilar summu allra gilda í d
 def dictsum(d):
     s = 0
     for v in d.values():
         s += v
     return s
 
-def count(character):
-        if character not in character_freq:
-            character_freq[character] = 0
-        character_freq[character] += 1
 
 def diff(typeds, corrects):
     n_err = 0
@@ -25,9 +21,8 @@ def diff(typeds, corrects):
     if len(typeds) != len(corrects):
         return None
     for typed, correct in zip(typeds,corrects):
-        count(typed); count(correct)
         if correct != typed:
-            if n_err > 0:
+            if n_err > max_change_optical:
                 return None
             else:
                 n_err += 1
@@ -35,6 +30,7 @@ def diff(typeds, corrects):
     return correction
 
 missing = [83, 86, 87, 88, 98, 104, 109]
+
 
 def characterwise(csvs):
     similarity = {}
@@ -57,17 +53,17 @@ def characterwise(csvs):
                             similarity[mistake] = dict()
                         if correction not in similarity[mistake]:
                             similarity[mistake][correction] = 0
-                        similarity[mistake][correction] += 1                 # e.g.
+                        similarity[mistake][correction] += 1
 
     # Filter out uncommon errors
-    similarity = { k: clean(v) for k, v in similarity.items() if clean(v) }    # { 'l': { 'i': 255, '1': 50 }, ',': {'.':200} }
+    similarity = { k: clean(v) for k, v in similarity.items() if clean(v) }
     
 
     # Sort letters by how similar they are to other letters in general
-    confusingness = { k: sum(v.values()) for k, v in similarity.items() }      # { 'l': 305 }
-    confusing = sorted(confusingness, key=confusingness.get, reverse=True)           # [ 'l', ',' ]
+    confusingness = { k: sum(v.values()) for k, v in similarity.items() }
+    confusing = sorted(confusingness, key=confusingness.get, reverse=True)
 
-    similar = { k: sorted(v, key=v.get, reverse=True) for k, v in similarity.items() } # { 'l': ['i','1'] }
+    similar = { k: sorted(v, key=v.get, reverse=True) for k, v in similarity.items() }
 
     return confusing, similar
 

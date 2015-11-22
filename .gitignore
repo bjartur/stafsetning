@@ -115,6 +115,9 @@ target/
 althingi_errors/
 althingi_tagged/
 althingi_text/
+known_errors.csv
+known_errors.csv.rej
+known_errors.csv.orig
 
 # Instructions
 hv_2.pdf
