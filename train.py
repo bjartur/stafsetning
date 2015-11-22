@@ -1,6 +1,6 @@
 import csv
 from pprint import pprint
-from constants import *
+from parameters import *
 
 
 # skilar þeim lyklagildispörum þar sem gildið er a.m.k. min_err_freq
