@@ -80,7 +80,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
         return guess or current_word
 
     confusing, similar = train.characterwise(range(82,83))
-    with open('althingi_errors/084.csv', newline='', encoding='utf-8') as csvfile:
+    with open('althingi_errors/082.csv', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         prev_word = ""
         prev_guess = ""
