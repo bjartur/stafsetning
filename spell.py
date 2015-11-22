@@ -2,34 +2,8 @@
 # -*- coding: utf-8 -*-
 import csv
 import importlib, correct
+from constants import *
 
-word_frequency = {}
-following_word = {}
-word_count = 0
-rare_word_treshold = 4
-ordmyndir = []
-
-
-def missing(i):
-    if i in [83, 98, 109, 111]:
-        return True
-    else:
-        return False
-
-def missing_error(num):
-    if num in [83, 86, 87, 88, 98, 104, 109]:
-        return True
-    else:
-        return False
-
-def most_common_ocr_error(word):
-    if word == "i":
-        return "í"
-    elif word == "ekkí":
-        return "ekki"
-    elif word == "Reykjavik":
-        return "Reykjavík"
-    return word
 
 def read_files():
     with open("known_errors.csv", newline='', encoding='utf-8') as csvfile:
@@ -37,7 +11,7 @@ def read_files():
         print("Creating dict from known_corrections.csv")
         prev_word = ""
         for row in reader:
-            word = most_common_ocr_error(row['CorrectWord'])
+            word = row['CorrectWord']
             prev_word = create_dicts(prev_word, word)
 
 
@@ -71,11 +45,3 @@ while input() == "":
     importlib.reload(correct)
     correct.read_in_test_data(word_count, word_frequency, following_word)
     print("Press <Enter> to retry correcting, or type q<Enter> to quit..")
-
-
-# import csv
-# with open('eggs.csv', 'w', newline='') as csvfile:
-#     spamwriter = csv.writer(csvfile, delimiter=' ',
-#                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
-#     spamwriter.writerow(['Spam'] * 5 + ['Baked Beans'])
-#     spamwriter.writerow(['Spam', 'Lovely Spam', 'Wonderful Spam'])

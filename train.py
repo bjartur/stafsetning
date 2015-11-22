@@ -1,19 +1,20 @@
 import csv
 from pprint import pprint
+from constants import *
 
-min_err_freq = 8
 
-character_freq = {}
-
+# skilar þeim lyklagildispörum þar sem gildið er a.m.k. min_err_freq
 def clean(correction):
-    common_corrections = {k: v for k, v in correction.items() if v >= min_err_freq}
-    return sorted(common_corrections.keys(), key=common_corrections.get, reverse=True)
+    return { k: v for k, v in correction.items() if v >= min_err_freq }
 
 
-def count(character):
-        if character not in character_freq:
-            character_freq[character] = 0
-        character_freq[character] += 1
+# skilar summu allra gilda í d
+def dictsum(d):
+    s = 0
+    for v in d.values():
+        s += v
+    return s
+
 
 def diff(typeds, corrects):
     n_err = 0
@@ -21,9 +22,8 @@ def diff(typeds, corrects):
     if len(typeds) != len(corrects):
         return None
     for typed, correct in zip(typeds,corrects):
-        count(typed); count(correct)
         if correct != typed:
-            if n_err > 0:
+            if n_err > max_change_optical:
                 return None
             else:
                 n_err += 1
@@ -32,8 +32,9 @@ def diff(typeds, corrects):
 
 missing = [83, 86, 87, 88, 98, 104, 109]
 
+
 def characterwise(csvs):
-    similar = {}
+    similarity = {}
     for i in csvs:
         if i not in missing:
             prefix = 'althingi_errors/'
@@ -43,19 +44,29 @@ def characterwise(csvs):
                 filename = prefix + str(i) + '.csv'
             with open(filename, newline='', encoding='utf-8') as csvfile:
                 reader = csv.DictReader(csvfile)
-                print("Finding similar characters in althingi error nr: ", i)
+                print("Finding similarity characters in althingi error nr: ", i)
                 prev_word = ""
                 for row in reader:
                     result = diff(row['Word'], row['CorrectWord'])
                     if result is not None: #if neither equal nor too different
                         mistake, correction = result
-                        if mistake not in similar:
-                            similar[mistake] = dict()
-                        if correction not in similar[mistake]:
-                            similar[mistake][correction] = 0
-                        similar[mistake][correction] += 1
-    similar = {k: clean(v) for k, v in similar.items() if clean(v)}
-    return similar
+                        if mistake not in similarity:
+                            similarity[mistake] = dict()
+                        if correction not in similarity[mistake]:
+                            similarity[mistake][correction] = 0
+                        similarity[mistake][correction] += 1
+
+    # Filter out uncommon errors
+    similarity = { k: clean(v) for k, v in similarity.items() if clean(v) }
+    
+
+    # Sort letters by how similar they are to other letters in general
+    confusingness = { k: sum(v.values()) for k, v in similarity.items() }
+    confusing = sorted(confusingness, key=confusingness.get, reverse=True)
+
+    similar = { k: sorted(v, key=v.get, reverse=True) for k, v in similarity.items() }
+
+    return confusing, similar
 
 if __name__ == '__main__':
     pprint(characterwise([79,80]))
