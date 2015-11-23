@@ -14,4 +14,4 @@ Forritið þarfnast skjölin 'althingi_errors/079.csv' og 'althingi_errors/080.c
     python3 spell.py filename.csv
     
 ## Niðurstöður
-Niðurstöður eru í skjalinu filename_corrected.csv
+Niðurstöður eru í skjalinu 'filename_corrected.csv'
