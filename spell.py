@@ -7,7 +7,7 @@ from parameters import *
 if len(sys.argv) > 1:
     fi = sys.argv[1]
     filename.append(fi)
-    print(filename)
+
 
 def read_files():
     with open(training_data, newline='', encoding='utf-8') as csvfile:
@@ -20,19 +20,11 @@ def read_files():
                 continue
             if not prev_word:
                 word = word.lower()
-            populate_word_frequency(word)
+            words.add(word)
             populate_following_word(prev_word, word)
             global word_count
             word_count += 1
             prev_word = word
-
-
-# Populates a dictionary of all words and how common they are
-def populate_word_frequency(word):
-    if not word_frequency.get(word):
-        word_frequency[word] = 1
-    else:
-        word_frequency[word] += 1
 
 
 # Populates a dictionary of following words and their occurrences
@@ -49,4 +41,4 @@ def populate_following_word(prev_word, cur_word):
 read_files()
 
 if __name__ == '__main__':
-    correct.read_in_test_data(word_count, word_frequency, following_word)
+    correct.read_in_test_data(word_count)

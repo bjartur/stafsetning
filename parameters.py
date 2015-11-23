@@ -13,7 +13,7 @@ print_all_errors = True
 # When developing we can see the error rate from previously corrected data
 dev_mode = True
 # All words who accure and their frequency
-word_frequency = {}
+words = set()
 # All words and a list of words that follow and how often
 following_word = {}
 # Counter for total words in text

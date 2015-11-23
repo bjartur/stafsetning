@@ -5,7 +5,7 @@ import train
 from parameters import *
 
 
-def read_in_test_data(word_count, word_frequency, following_word):
+def read_in_test_data(word_count):
 
     confusing, similar = train.characterwise()
     unnoticed_errors = 0
@@ -73,10 +73,10 @@ def read_in_test_data(word_count, word_frequency, following_word):
         least_distance = max_change_context
         guess = ""
         if not exists(previous_word):
-            possibilities = word_frequency
+            possibilities = words
         else:
             possibilities = following_word[previous_word]
-        for possibility, freq in possibilities.items():
+        for possibility in possibilities:
             edit_distance = editdistance.eval(possibility, current_word)
             if edit_distance <= least_distance:
                 least_distance = edit_distance
