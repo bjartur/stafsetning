@@ -1,5 +1,14 @@
---- known_errors.csv	2015-11-23 00:39:37.681021210 +0000
-+++ known_errors.csv	2015-11-23 00:39:08.684877426 +0000
+--- 79-80.csv	2015-11-23 00:39:37.681021210 +0000
++++ bak	2015-11-23 09:57:01.978095894 +0000
+@@ -2987,7 +2987,7 @@
+ góð,lhfosf,góður,góð
+ mál,nhfo,mál,mál
+ í,aþ,í,í
+-slikum,lhfþsf,slikur,slíkum
++slikum,lhfþsf,slíkur,slíkum
+ efnum,nhfþ,efni,efnum
+ .,.,.,.
+ ,,,
 @@ -4708,7 +4708,7 @@
  þá,aa,þá,þá
  er,sfg3en,vera,er
@@ -9,6 +18,33 @@
  fram,aa,fram,fram
  ",",",",",",","
  að,c,að,að
+@@ -6411,7 +6411,7 @@
+ í,aþ,í,í
+ kjördæmamálinu,nheþg,kjördæmamál,kjördæmamálinu
+ og,c,og,og
+-slikt,lhensf,slikur,slíkt
++slikt,lhensf,slíkur,slíkt
+ væri,svg3eþ,vera,væri
+ algerlega,aa,algerlega,algerlega
+ út,aa,út,út
+@@ -7204,7 +7204,7 @@
+ þess,fphee,það,þess
+ að,cn,að,að
+ eyðileggja,sng,eyðileggja,eyðileggja
+-slika,lveosf,slikur,slíka
++slika,lveosf,slíkur,slíka
+ stjórn,nveo,stjórn,stjórn
+ á,aþ,á,á
+ endanum,nkeþg,endi,endanum
+@@ -13618,7 +13618,7 @@
+ .,.,.,.
+ ,,,
+ Við,ao,við,Við
+-slikar,lvfosf,slikur,slíkar
++slikar,lvfosf,slíkur,slíkar
+ aðstæður,nvfo,aðstæður,aðstæður
+ getur,sfg3en,geta,getur
+ stjórnarflokkurinn,nkeng,stjórnarflokkur,stjórnarflokkurinn
 @@ -13640,7 +13640,7 @@
  að,cn,að,að
  sýna,sng,sýna,sýna
@@ -18,6 +54,15 @@
  .,.,.,.
  ,,,
  Ég,fp1en,ég,Ég
+@@ -18415,7 +18415,7 @@
+ að,c,að,að
+ flokkurinn,nkeng,flokkur,flokkurinn
+ sem,ct,sem,sem
+-slikur,nken,slikur,slíkur
++slikur,nken,slíkur,slíkur
+ vildi,sfg3eþ,vilja,vildi
+ ekki,aa,ekki,ekki
+ standa,sng,standa,standa
 @@ -18969,7 +18969,7 @@
  byggingarmálum,nhfþ,byggingarmál,byggingarmálum
  alþýðunnar,nveeg,alþýða,alþýðunnar
@@ -72,6 +117,15 @@
  ",",",",",",","
  sem,ct,sem,sem
  voru,sfg3fþ,vera,voru
+@@ -28622,7 +28622,7 @@
+ i,e,i,í
+ og,c,og,og
+ annað,fohen,annar,annað
+-slikt,lhensf,slikur,slíkt
++slikt,lhensf,slíkur,slíkt
+ .,.,.,.
+ ,,,
+ Þá,aa,þá,Þá
 @@ -30095,7 +30095,7 @@
  reru,sfg3fþ,róa,reru
  máske,aa,máske,máske
@@ -81,6 +135,15 @@
  bát,nkeo,bátur,bát
  ",",",",",",","
  stundum,aa,stundum,stundum
+@@ -32857,7 +32857,7 @@
+ dettur,sfg3en,detta,dettur
+ ekkert,fohen,enginn,ekkert
+ af,aþ,af,af
+-sliku,nveþ,slika,slíku
++sliku,nveþ,slíka,slíku
+ i,e,i,í
+ hug,nkeo,hugur,hug
+ .,.,.,.
 @@ -34569,7 +34569,7 @@
  ekki,aa,ekki,ekki
  neitt,foheo,neinn,neitt
@@ -99,6 +162,60 @@
  meiri,lveovm,mikill,meiri
  þekkingu,nveo,þekking,þekkingu
  á,aþ,á,á
+@@ -34968,7 +34968,7 @@
+ Framsfl.,nkee-s,Framsfl.,Framsfl.
+ ",",",",",",","
+ er,sfg3en,vera,er
+-slik,nhen,slik,slík
++slik,nhen,slík,slík
+ ",",",",",",","
+ að,c,að,að
+ Timinn,nken-s,Timinn,Tíminn
+@@ -35505,7 +35505,7 @@
+ hernámi,nheþ,hernám,hernámi
+ og,c,og,og
+ öðru,foheþ,annar,öðru
+-sliku,lveovf,slikur,slíku
++sliku,lveovf,slíkur,slíku
+ ",",",",",",","
+ myndi,svg3eþ,munu,myndi
+ sameiginlega,lvenvf,sameiginlegur,sameiginlega
+@@ -35699,7 +35699,7 @@
+ sett,ssg,setja,sett
+ stórfé,nheo,stórfé,stórfé
+ í,ao,í,í
+-slika,lveosf,slikur,slíka
++slika,lveosf,slíkur,slíka
+ uppbyggingu,nveo,uppbygging,uppbyggingu
+ ",",",",",",","
+ uppbyggingu,nveo,uppbygging,uppbyggingu
+@@ -36095,7 +36095,7 @@
+ togara,nkfo,togari,togara
+ og,c,og,og
+ annað,foheo,annar,annað
+-slikt,lheosf,slikur,slíkt
++slikt,lheosf,slíkur,slíkt
+ .,.,.,.
+ ,,,
+ á,aþ,á,á
+@@ -36855,7 +36855,7 @@
+ um,ao,um,um
+ það,fpheo,það,það
+ vitna,sfg3fn,vitna,vitna
+-Alþingístíðindi,nheþ-s,Alþingístíðindi,Alþingistíðindi
++Alþingístíðindi,nheþ-s,Alþingistíðindi,Alþingistíðindi
+ .,.,.,.
+ ,,,
+ S--M.,nken,S--M.,S-M.
+@@ -37037,7 +37037,7 @@
+ viljað,ssg,vilja,viljað
+ koma,sng,koma,koma
+ upp,aa,upp,upp
+-slikri,lveþsf,slikur,slíkri
++slikri,lveþsf,slíkur,slíkri
+ verksmiðju,nveþ,verksmiðja,verksmiðju
+ ",",",",",",","
+ að,c,að,að
 @@ -37216,7 +37216,7 @@
  Alþingi,nheþ-s,Alþingi,Alþingi
  ",",",",",",","
@@ -126,6 +243,24 @@
  þá,aa,þá,þá
  ",",",",",",","
  sem,ct,sem,sem
+@@ -42187,7 +42187,7 @@
+ að,cn,að,að
+ kjósa,sng,kjósa,kjósa
+ um,ao,um,um
+-landhelgísmálið,nheog,landhelgísmál,landhelgismálið
++landhelgísmálið,nheog,landhelgismál,landhelgismálið
+ ",",",",",",","
+ það,fphen,það,það
+ eina,tfveo,einn,eina
+@@ -43260,7 +43260,7 @@
+ þegar,c,þegar,þegar
+ til,ae,til,til
+ almennra,lvfesf,almennur,almennra
+-alþingískosninga,nvfe,alþingískosning,alþingiskosninga
++alþingískosninga,nvfe,alþingiskosning,alþingiskosninga
+ og,c,og,og
+ samþykki,nheþ,samþykki,samþykki
+ hið,ghen,hinn,hið
 @@ -44328,7 +44328,7 @@
  að,c,að,að
  kosningarnar,nvfng,kosning,kosningarnar
@@ -189,6 +324,15 @@
  ",",",",",",","
  i,e,i,í
  leiðinni,nveþg,leið,leiðinni
+@@ -66350,7 +66350,7 @@
+ er,sfg3en,vera,er
+ mælt,sþghen,mæla,mælt
+ í,aþ,í,í
+-áfengíslögum,nkfþ,áfengíslagur,áfengislögum
++áfengíslögum,nkfþ,áfengislög,áfengislögum
+ .,.,.,.
+ ,,,
+ Það,fphen,það,Það
 @@ -67489,7 +67489,7 @@
  senda,sng,senda,senda
  umboðsmenn,nkfo,umboðsmaður,umboðsmenn
@@ -264,6 +408,15 @@
  réttindum,nhfþ,réttindi,réttindum
  til,ae,til,til
  framdráttar,nkee,framdráttur,framdráttar
+@@ -106517,7 +106517,7 @@
+ þm.,nkfn,þm.,þm.
+ ,,,
+ Á,aþ,á,Á
+-fylgískjali,nheþ,fylgískjal,fylgiskjali
++fylgískjali,nheþ,fylgiskjal,fylgiskjali
+ ",",",",",",","
+ sem,ct,sem,sem
+ prentað,sþghen,prenta,prentað
 @@ -110356,7 +110356,7 @@
  til,ae,til,til
  þess,fphee,það,þess
@@ -754,6 +907,15 @@
  ",",",",",",","
  til,ae,til,til
  þess,fphee,það,þess
+@@ -225529,7 +225525,7 @@
+ taumana,nkfog,taumur,taumana
+ úr,aþ,úr,úr
+ höndum,nvfþ,hönd,höndum
+-Alþingís,nveþ-s,Alþingís,Alþingís
++Alþingís,nveþ-s,Alþingis,Alþingis
+ ",",",",",",","
+ að,c,að,að
+ því,fpheþ,það,því
 @@ -226055,7 +226051,7 @@
  og,c,og,og
  mér,fp1eþ,ég,mér
@@ -790,6 +952,15 @@
  stigi,nheþ,stig,stigi
  .,.,.,.
  ,,,
+@@ -228755,7 +228751,7 @@
+ ekki,aa,ekki,ekki
+ möguleika,nkfo,möguleiki,möguleika
+ til,ae,til,til
+-slikra,sng,slikra,slikra
++slikra,sng,slíkra,slíkra
+ aðferða,nvfe,aðferð,aðferða
+ ",",",",",",","
+ t.d.,as,t.d.,t.d.
 @@ -232884,7 +232880,7 @@
  og,c,og,og
  ekki,aa,ekki,ekki
@@ -799,6 +970,15 @@
  febrúarlok,nhen,febrúarlok,febrúarlok
  ?,?,?,?
  ,,,
+@@ -234232,7 +234228,7 @@
+ tolla,sng,tolla,tolla
+ og,c,og,og
+ annarra,fokfe,annar,annarra
+-slikra,sng,slikra,slikra
++slikra,sng,slíkra,slíkra
+ gjalda,sfg3fn,gjalda,gjalda
+ ",",",",",",","
+ og,c,og,og
 @@ -243261,7 +243257,7 @@
  gjaldeyristekjurnar,nvfng,gjaldeyristekjur,gjaldeyristekjurnar
  1959,ta,1959,1959
@@ -1267,6 +1447,15 @@
  skömmtun,nveo,skömmtun,skömmtun
  á,aþ,á,á
  Íslandi,nheþ-s,Ísland,Íslandi
+@@ -408738,7 +408734,7 @@
+ ",",",",",",","
+ Bretlands,nhee-s,Bretland,Bretlands
+ eða,c,eða,eða
+-slikra,lkfesf,slikur,slikra
++slikra,lkfesf,slikur,slíkra
+ landa,nkfe,landi,landa
+ ",",",",",",","
+ er,sfg3en,vera,er
 @@ -420312,7 +420308,7 @@
  heimilað,sþghen,heimila,heimilað
  að,cn,að,að
@@ -1419,6 +1608,15 @@
  ",",",",",",","
  þ.e.,as,þ.e.,þ.e.
  fiskibát,nkeo,fiskibátur,fiskibát
+@@ -489389,7 +489375,7 @@
+ ",",",",",",","
+ Ameríku,nveo-s,Ameríka,Ameríku
+ eða,c,eða,eða
+-slikra,sng,slikra,slíkra
++slikra,sng,slíkra,slíkra
+ ?,?,?,?
+ ,,,
+ Við,fp1fn,ég,Við
 @@ -492649,9 +492635,7 @@
  heiti,svg3en,heita,heiti
  Verslunarbanki,nken-s,Verslunarbanki,Verslunarbanki
@@ -1504,6 +1702,15 @@
  viðskiptum,nhfþ,viðskipti,viðskiptum
  ?,?,?,?
  ,,,
+@@ -540858,7 +540840,7 @@
+ ",",",",",",","
+ að,c,að,að
+ útsvör,nhfn,útsvar,útsvör
+-slikra,sfg3fn,slikra,slíkra
++slikra,sfg3fn,slíkra,slíkra
+ stofnana,nvfe,stofnun,stofnana
+ ",",",",",",","
+ sem,ct,sem,sem
 @@ -563368,7 +563350,7 @@
  aðra,fokfo,annar,aðra
  aðila,nkfo,aðili,aðila
@@ -1585,6 +1792,15 @@
  degi,nkeþ,dagur,degi
  þingsins,nheeg,þing,þingsins
  með,aþ,með,með
+@@ -594009,7 +593991,7 @@
+ yrði,svg3eþ,verða,yrði
+ tekið,sþghen,taka,tekið
+ til,aa,til,til
+-slikrar,sfg3en,slikra,slíkrar
++slikrar,sfg3en,slíkra,slíkrar
+ skyndiafgreiðslu,nveo,skyndiafgreiðsla,skyndiafgreiðslu
+ hér,aa,hér,hér
+ í,ao,í,í
 @@ -594151,7 +594133,7 @@
  tvívegis,aa,tvívegis,tvívegis
  verið,ssg,vera,verið
@@ -1630,6 +1846,15 @@
  alrangar,lvfosf,alrangur,alrangar
  tölur,nvfo,tala,tölur
  um,ao,um,um
+@@ -654379,7 +654361,7 @@
+ skipakaupa,nhfe,skipakaup,skipakaupa
+ og,c,og,og
+ fleiri,lkfevm,margur,fleiri
+-slikra,sng,slikra,slíkra
++slikra,sng,slíkra,slíkra
+ framkvæmda,nvfe,framkvæmd,framkvæmda
+ og,c,og,og
+ niðurgreiðslur,nvfn,niðurgreiðsla,niðurgreiðslur
 @@ -656820,7 +656802,7 @@
  mundi,svg3eþ,munu,mundi
  halda,sng,halda,halda
@@ -2107,6 +2332,15 @@
  um,ao,um,um
  ",",",",",",","
  ef,c,ef,ef
+@@ -773602,7 +773584,7 @@
+ gæti,svg3eþ,geta,gæti
+ í,aþ,í,í
+ skjóli,nheþ,skjól,skjóli
+-slikra,sng,slikra,slíkra
++slikra,sng,slíkra,slíkra
+ afskipta,nhfe,afskipti,afskipta
+ bætt,ssg,bæta,bætt
+ sin,lhfnsf,sinn,sín
 @@ -773882,7 +773864,7 @@
  meðan,c,meðan,meðan
  við,fp1fn,ég,við
@@ -2665,6 +2899,15 @@
  ",",",",",",","
  svo,aa,svo,svo
  sem,ct,sem,sem
+@@ -890841,7 +890823,7 @@
+ .,.,.,.
+ ,,,
+ Umsögn,nven,umsögn,Umsögn
+-slikra,sng,slikra,slíkra
++slikra,sng,slíkra,slíkra
+ manna,nkfe,maður,manna
+ getur,sfg3en,geta,getur
+ oft,aa,oft,oft
 @@ -901138,7 +901120,7 @@
  að,cn,að,að
  muna,sng,muna,muna
@@ -2755,6 +2998,15 @@
  í,aþ,í,í
  veðri,nheþ,veður,veðri
  vaka,sng,vaka,vaka
+@@ -964621,7 +964603,7 @@
+ þingfrestanir,nvfn,þingfrestun,þingfrestanir
+ með,aþ,með,með
+ samþykki,nheþ,samþykki,samþykki
+-Alþingís,nveþ-s,Alþingís,Alþingis
++Alþingís,nveþ-s,Alþingis,Alþingis
+ eru,sfg3fn,vera,eru
+ tíðar,lvfnsf,tíður,tíðar
+ ",",",",",",","
 @@ -965536,7 +965518,7 @@
  í,aþ,í,í
  besta,lheþve,góður,besta
@@ -2773,6 +3025,51 @@
  f,nhfo,f,í
  aukinni,lveþsf,aukinn,aukinni
  framleiðslu,nveþ,framleiðsla,framleiðslu
+@@ -969407,7 +969389,7 @@
+ vitnar,sfg3en,vitna,vitnar
+ sjálf,fbven,sjálfur,sjálf
+ saga,nven,saga,saga
+-Alþingís,nven-s,Alþingís,Alþingis
++Alþingís,nven-s,Alþingis,Alþingis
+ .,.,.,.
+ ,,,
+ Hvað,fsheo,hver,Hvað
+@@ -969975,7 +969957,7 @@
+ sögufrægu,lveevf,sögufrægur,sögufrægu
+ stofnunar,nvee,stofnun,stofnunar
+ ",",",",",",","
+-Alþingís,nven-s,Alþingís,Alþingis
++Alþingís,nven-s,Alþingis,Alþingis
+ Íslendinga,nkfe-s,Íslendingur,Íslendinga
+ ",",",",",",","
+ og,c,og,og
+@@ -970027,7 +970009,7 @@
+ og,c,og,og
+ samráðs,nhee,samráð,samráðs
+ milli,ae,milli,milli
+-Alþingís,nven-s,Alþingís,Alþingis
++Alþingís,nven-s,Alþingis,Alþingis
+ og,c,og,og
+ vinnustéttanna,nvfeg,vinnustétt,vinnustéttanna
+ í,aþ,í,í
+@@ -970473,7 +970455,7 @@
+ ",",",",",",","
+ að,c,að,að
+ fundum,sfg1fþ,finna,fundum
+-Alþingís,nven-s,Alþingís,Alþingis
++Alþingís,nven-s,Alþingis,Alþingis
+ verði,svg3en,verða,verði
+ frestað,sþghen,fresta,frestað
+ til,ae,til,til
+@@ -972799,7 +972781,7 @@
+ frestun,nveo,frestun,frestun
+ á,aþ,á,á
+ fundum,nkfþ,fundur,fundum
+-Alþingís,nveþ-s,Alþingís,Alþingis
++Alþingís,nveþ-s,Alþingis,Alþingis
+ .,.,.,.
+ ,,,
+ Á,aþ,á,Á
 @@ -977248,7 +977230,7 @@
  að,cn,að,að
  ráða,sng,ráða,ráða
