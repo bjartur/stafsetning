@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import csv
+import csv, sys
 import importlib, correct
 from parameters import *
 
+if len(sys.argv) > 1:
+    fi = sys.argv[1]
+    filename = fi
 
 def read_files():
     with open(training_data, newline='', encoding='utf-8') as csvfile:
