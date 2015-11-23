@@ -38,10 +38,5 @@ def create_dicts(prev_word, cur_word):
 
 read_files()
 
-correct.read_in_test_data(word_count, word_frequency, following_word)
-
-print("Press <Enter> to retry correcting, or type q<Enter> to quit..")
-while input() == "":
-    importlib.reload(correct)
+if __name__ == '__main__':
     correct.read_in_test_data(word_count, word_frequency, following_word)
-    print("Press <Enter> to retry correcting, or type q<Enter> to quit..")

@@ -12,18 +12,27 @@ def read_in_test_data(word_count, word_frequency, following_word):
     def skipta(word, i, becomes):
         return word[:i] + becomes + word[i+1:]
 
-    def ocr_correction(word, confusing, similar, level=1):
+    # þær stafarunur sem eru einni stafavíxlun frá word
+    def fikta(word):
         for c in confusing:
             for i, letter in enumerate(word):
                 if letter == c:
                     for alternative in similar[letter]:
-                        new = skipta(word, i, alternative)
-                        if exists(new):
-                            return new
-                        elif level < max_change_optical:
-                            new = ocr_correction(word, confusing, similar, level+1)
-                            if exists(new):
-                                return new
+                        yield skipta(word, i, alternative)
+
+
+    def ocr_correction(word, confusing, similar):
+        for m in fikta(word):
+            if exists(m):
+                return m
+        if 2 <= max_change_optical:
+            for m in fikta(word):
+                for n in fikta(m):
+                    if exists(n):
+                        return n
+        if 2 < max_change_optical:
+            raise NotImplementedError
+
     def make_guess(confusing, similar, prev_word, prev_guess, word):
         if word.find('--') == 0:
             guess = '---'
@@ -39,7 +48,8 @@ def read_in_test_data(word_count, word_frequency, following_word):
                 else:
                     guess = best_guess(prev_guess, word)
             if not guess:
-                guess = word
+                guess = best_guess(None, word)
+
             if prev_word == ".":
                 # The first word in a sentence.
                 guess = guess.capitalize()
@@ -67,7 +77,7 @@ def read_in_test_data(word_count, word_frequency, following_word):
         return guess or current_word
 
     confusing, similar = train.characterwise(range(82,83))
-    with open('althingi_errors/082.csv', newline='', encoding='utf-8') as csvfile:
+    with open('althingi_errors/095.csv', newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         prev_word = ""
         prev_guess = ""

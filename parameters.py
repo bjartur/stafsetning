@@ -3,7 +3,7 @@ max_change_optical = 2
 
 treshold_common = 0.005
 treshold_rare   = 0.001
-min_err_freq = 8
+min_err_freq = 5
 
 # Print out every error and error type when it happens
 print_all_errors = True

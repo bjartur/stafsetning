@@ -1,5 +1,5 @@
---- known_errors.csv	2015-11-22 18:38:28.355564672 +0000
-+++ known_errors.csv	2015-11-21 17:53:45.889964391 +0000
+--- known_errors.csv	2015-11-23 00:39:37.681021210 +0000
++++ known_errors.csv	2015-11-23 00:39:08.684877426 +0000
 @@ -4708,7 +4708,7 @@
  þá,aa,þá,þá
  er,sfg3en,vera,er
@@ -27,6 +27,15 @@
  á,aþ,á,á
  tímum,nkfþ,tími,tímum
  nýsköpunarstjórnarinnar,nveeg,nýsköpunarstjórn,nýsköpunarstjórnarinnar
+@@ -23365,7 +23365,7 @@
+ ,,,
+ Þeir,fpkfn,hann,Þeir
+ eiga,sfg3fn,eiga,eiga
+-eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
+ að,cn,að,að
+ segja,sng,segja,segja
+ það,fpheo,það,það
 @@ -23787,7 +23787,7 @@
  ",",",",",",","
  menn,nkfn,maður,menn
@@ -50,7 +59,7 @@
  þjóðinni,nveþg,þjóð,þjóðinni
  hvað,fshen,hver,hvað
 -eftír,nhen,eftír,eftír
-+eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
  annað,foheo,annar,annað
  fyrir,aþ,fyrir,fyrir
  þrifum,nhfþ,þrif,þrifum
@@ -144,6 +153,15 @@
  daga,nkfe,dagur,daga
  ",",",",",",","
  eða,c,eða,eða
+@@ -56720,7 +56720,7 @@
+ fram,aa,fram,fram
+ aftur,aa,aftur,aftur
+ ---,ta,---,---
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ ósk,nveþ,ósk,ósk
+ sinna,fekfe,sinn,sinna
+ kjósenda,nkfe,kjósandi,kjósenda
 @@ -60163,7 +60163,7 @@
  að,cn,að,að
  byggja,sng,byggja,byggja
@@ -225,6 +243,15 @@
  6,ta,6,6
  millj.,tfvfe,millj.,millj.
  kr.,nvfe,kr.,kr.
+@@ -99933,7 +99933,7 @@
+ 80,ta,80,80
+ millj.,tfvfe,millj.,millj.
+ kr.,nvfe,kr.,kr.
+-eftír,nken,eftír,eftir
++eftír,nken,eftir,eftir
+ skulum,sfg1fn,skulu,skulum
+ við,fp1fn,ég,við
+ segja,sng,segja,segja
 @@ -100452,9 +100452,9 @@
  þjóðin,nveng,þjóð,þjóðin
  og,c,og,og
@@ -354,7 +381,7 @@
  og,c,og,og
  mjólkurskortí,nhfo,mjólkurskortí,mjólkurskortí
 -eftír,nkeo,eftír,eftír
-+eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
  kannske,aa,kannske,kannske
  miðjan,lkeosf,miður,miðjan
  mánuðinn,nkeog,mánuður,mánuðinn
@@ -376,6 +403,15 @@
  til,ae,til,til
  umr.,nvee,umr.,umr.
  í,aþ,í,í
+@@ -133753,7 +133749,7 @@
+ við,fp1fn,ég,við
+ óskuðum,sfg1fþ,óska,óskuðum
+ einmítt,lhensf,einmíður,einmitt
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ því,aa,því,því
+ af,aþ,af,af
+ því,fpheþ,það,því
 @@ -133972,7 +133968,7 @@
  og,c,og,og
  veru,nveþ,vera,veru
@@ -457,6 +493,24 @@
  úrslit,nhfo,úrslit,úrslit
  í,aa,í,í
  enn,aa,enn,enn
+@@ -143966,7 +143962,7 @@
+ janúarmánuði,nkeþ,janúarmánuður,janúarmánuði
+ ?,?,?,?
+ ,,,
+-Eftír,nken,eftír,Eftír
++Eftír,nken,eftir,Eftir
+ það,fphen,það,það
+ virðíst,lheosf,virðís,virðist
+ hún,fpven,hún,hún
+@@ -144627,7 +144623,7 @@
+ ræðumaður,nken,ræðumaður,ræðumaður
+ vill,sfg3en,vilja,vill
+ bíða,sng,bíða,bíða
+-eftír,nken,eftír,eftir
++eftír,nken,eftir,eftir
+ því,fpheþ,það,því
+ ",",",",",",","
+ þá,aa,þá,þá
 @@ -147571,7 +147567,7 @@
  hann,fpken,hann,hann
  endurskoði,svg3en,endurskoða,endurskoði
@@ -466,6 +520,15 @@
  í,aþ,í,í
  þessu,faheþ,þessi,þessu
  máli,nheþ,mál,máli
+@@ -148137,7 +148133,7 @@
+ beðið,ssg,bíða,beðið
+ forseta,nkeo,forseti,forseta
+ hvað,fshen,hver,hvað
+-eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
+ annað,foheo,annar,annað
+ um,ao,um,um
+ að,cn,að,að
 @@ -149779,7 +149775,7 @@
  ,,,
  Ég,fp1en,ég,Ég
@@ -502,12 +565,30 @@
  á,aþ,á,á
  þeim,fahfþ,það,þeim
  málum,nhfþ,mál,málum
+@@ -154344,7 +154340,7 @@
+ ",",",",",",","
+ sem,ct,sem,sem
+ biður,sfg3en,biðja,bíður
+-eftír,lkensf,eftír,eftir
++eftír,lkensf,eftir,eftir
+ því,fpheþ,það,því
+ ",",",",",",","
+ að,c,að,að
+@@ -155366,7 +155362,7 @@
+ kæmu,svg3fþ,koma,kæmu
+ þangað,aa,þangað,þangað
+ strax,aa,strax,strax
+-eftír,lkensf,eftír,eftir
++eftír,lkensf,eftir,eftir
+ kosningar,nvfn,kosning,kosningar
+ .,.,.,.
+ ,,,
 @@ -156125,7 +156121,7 @@
  .,.,.,.
  ,,,
  Skjótlega,lheevf,skjótlegur,Skjótlega
 -eftír,nhen,eftír,eftír
-+eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
  að,aþ,að,að
  þeirri,faveþ,sá,þeirri
  rannsókn,nveþ,rannsókn,rannsókn
@@ -538,6 +619,15 @@
  i,e,i,í
  slíkt,fbheo,slíkur,slíkt
  form,nheo,form,form
+@@ -211484,7 +211480,7 @@
+ ráðs,nhee,ráð,ráðs
+ ---,ta,---,---
+ sýnilega,lkeovf,sýnilegur,sýnilega
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ fyrirskipun,nveþ,fyrirskipun,fyrirskipun
+ frá,aþ,frá,frá
+ ríkisstj.,nvfþ,ríkisstj.,ríkisstj.
 @@ -213255,7 +213251,7 @@
  varla,aa,varla,varla
  getur,sfg3en,geta,getur
@@ -556,6 +646,15 @@
  gera,sng,gera,gera
  sérstakar,lvfosf,sérstakur,sérstakar
  ráðstafanir,nvfo,ráðstöfun,ráðstafanir
+@@ -215217,7 +215213,7 @@
+ afgreiðslu,nveo,afgreiðsla,afgreiðslu
+ efnahagsmálanna,nhfeg,efnahagsmál,efnahagsmálanna
+ ",",",",",",","
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ að,c,að,að
+ þingið,nheng,þing,þingið
+ kemur,sfg3en,koma,kemur
 @@ -215736,7 +215732,7 @@
  sem,ct,sem,sem
  hann,fpken,hann,hann
@@ -601,6 +700,15 @@
  fram,aa,fram,fram
  hér,aa,hér,hér
  á,aþ,á,á
+@@ -218469,7 +218465,7 @@
+ að,cn,að,að
+ finna,sng,finna,finna
+ í,aþ,í,í
+-eftírtöldum,lhfþsf,eftírtalinn,eftirtöldum
++eftírtöldum,lhfþsf,eftirtalinn,eftirtöldum
+ lögum,nhfþ,lag,lögum
+ .,.,.,.
+ ,,,
 @@ -219206,7 +219202,7 @@
  ganga,sng,ganga,ganga
  frá,aþ,frá,frá
@@ -619,6 +727,15 @@
  minna,lheovm,lítill,minna
  hefur,sfg3en,hafa,hefur
  þótt,c,þótt,þótt
+@@ -222142,7 +222138,7 @@
+ fyrir,ao,fyrir,fyrir
+ hana,fpveo,hún,hana
+ á,aþ,á,á
+-eftír,nkeþ,eftír,eftir
++eftír,nkeþ,eftir,eftir
+ .,.,.,.
+ ,,,
+ En,c,en,En
 @@ -222458,7 +222454,7 @@
  ráðstafanir,nvfo,ráðstöfun,ráðstafanir
  ",",",",",",","
@@ -835,6 +952,15 @@
  ríkisstjórn,nven,ríkisstjórn,ríkisstjórn
  beitti,sfg3eþ,beita,beitti
  sér,fpveþ,sig,sér
+@@ -293457,7 +293453,7 @@
+ að,cn,að,að
+ verða,sng,verða,verða
+ á,aþ,á,á
+-eftír,nkeþ,eftír,eftir
++eftír,nkeþ,eftir,eftir
+ ?,?,?,?
+ ,,,
+ Eina,lvenvf,einn,Eina
 @@ -293701,7 +293697,7 @@
  erfiðleikar,nkfn,erfiðleiki,erfiðleikar
  ",",",",",",","
@@ -853,6 +979,15 @@
  timum,nkfþ,timur,tímum
  vegna,ae,vegna,vegna
  frelsisins,nheeg,frelsi,frelsisins
+@@ -296858,7 +296854,7 @@
+ ,,,
+ Skv.,aþ,Skv.,Skv.
+ grg.,nveþ,grg.,grg.
+-eftírlitsmanns,nkee,eftírlitsmaður,eftirlitsmanns
++eftírlitsmanns,nkee,eftirlitsmaður,eftirlitsmanns
+ með,aþ,með,með
+ byggingum,nvfþ,bygging,byggingum
+ ríkisins,nheeg,ríki,ríkisins
 @@ -297122,7 +297118,7 @@
  var,sfg3eþ,vera,var
  skv.,aþ,skv.,skv.
@@ -898,6 +1033,15 @@
  útgjöld,nhfn,útgjöld,útgjöld
  .,.,.,.
  ,,,
+@@ -307515,7 +307511,7 @@
+ byggðarlögum,nhfþ,byggðarlag,byggðarlögum
+ .,.,.,.
+ ,,,
+-Eftír,nhen,eftír,Eftír
++Eftír,nhen,eftir,Eftir
+ nokkur,fohfn,nokkur,nokkur
+ ár,nhfn,ár,ár
+ ",",",",",",","
 @@ -308344,7 +308340,7 @@
  sem,ct,sem,sem
  með,aþ,með,með
@@ -979,6 +1123,15 @@
  störfum,nhfþ,starf,störfum
  án,ae,án,án
  þess,fphee,það,þess
+@@ -356511,7 +356507,7 @@
+ fá,sfg3fn,fá,fá
+ súkkulaði,nhfn,súkkulaði,súkkulaði
+ á,ao,á,á
+-eftír.,nveo,eftír.,eftir.
++eftír.,nveo,eftir.,eftir.
+ “,nkeo,“ur,“
+ ,,,
+ Í,aþ,í,Í
 @@ -357041,7 +357037,7 @@
  eru,sfg3fn,vera,eru
  ",",",",",",","
@@ -993,7 +1146,7 @@
  um,ao,um,um
  ",",",",",",","
 -eftír,nhen,eftír,eftír
-+eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
  öðrum,fokfþ,annar,öðrum
  lelðum,nkfþ,lelði,leiðum
  ",",",",",",","
@@ -1006,6 +1159,15 @@
  ",",",",",",","
  sem,ct,sem,sem
  eru,sfg3fn,vera,eru
+@@ -363381,7 +363377,7 @@
+ það,fphen,það,það
+ ",",",",",",","
+ en,c,en,en
+-eftír,nken,eftír,eftir
++eftír,nken,eftir,eftir
+ að,cn,að,að
+ ganga,sng,ganga,ganga
+ frá,aþ,frá,frá
 @@ -369738,7 +369734,7 @@
  .,.,.,.
  ,,,
@@ -1047,7 +1209,7 @@
  ganga,sng,ganga,ganga
  ríkt,lhensf,ríkur,ríkt
 -eftír,nhen,eftír,eftír
-+eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
  því,fpheþ,það,því
  ",",",",",",","
  að,c,að,að
@@ -1056,7 +1218,7 @@
  veittra,lvfesf,veittur,veittra
  ríkisábyrgða,nvfe,ríkisábyrgð,ríkisábyrgða
 -eftír,nken,eftír,eftír
-+eftír,nken,eftír,eftir
++eftír,nken,eftir,eftir
  gildistöku,nvee,gildistaka,gildistöku
  þessara,fahfe,þessi,þessara
  l.,nhfe,l.,l.
@@ -1105,6 +1267,33 @@
  skömmtun,nveo,skömmtun,skömmtun
  á,aþ,á,á
  Íslandi,nheþ-s,Ísland,Íslandi
+@@ -420312,7 +420308,7 @@
+ heimilað,sþghen,heimila,heimilað
+ að,cn,að,að
+ byggja,sng,byggja,byggja
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ getu,nvee,geta,getu
+ .,.,.,.
+ ,,,
+@@ -423350,7 +423346,7 @@
+ ,,,
+ Ég,fp1en,ég,Ég
+ man,sfg1en,muna,man
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ ráðunum,nhfþg,ráð,ráðunum
+ ",",",",",",","
+ sem,ct,sem,sem
+@@ -424096,7 +424092,7 @@
+ lltla,lhenvf,lldill,litla
+ ",",",",",",","
+ sem,ct,sem,sem
+-eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
+ er,sfg3en,vera,er
+ skilið,sþghen,skilja,skilið
+ til,ae,til,til
 @@ -424963,16 +424959,6 @@
  tolla,sfg3fn,tolla,tolla
  .,.,.,.
@@ -1122,6 +1311,15 @@
  Þar,aa,þar,Þar
  ei,aa,ei,er
  um,ao,um,um
+@@ -433763,7 +433749,7 @@
+ henni,fpveþ,hún,henni
+ ",",",",",",","
+ en,c,en,en
+-eftír,nken,eftír,eftir
++eftír,nken,eftir,eftir
+ að,c,að,að
+ stjórnin,nveng,stjórn,stjórnin
+ hneig,sfg3eþ,hníga,hneig
 @@ -444349,7 +444335,7 @@
  því,fpheþ,það,því
  að,cn,að,að
@@ -1167,12 +1365,21 @@
  birt,sþgven,birta,birt
  aftur,aa,aftur,aftur
  í,aþ,í,í
+@@ -459721,7 +459707,7 @@
+ hefur,sfg3en,hafa,hefur
+ komið,ssg,koma,komið
+ á,ao,á,á
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ ",",",",",",","
+ staðfestir,sfg3en,staðfesta,staðfestir
+ þetta,fahen,þessi,þetta
 @@ -462466,7 +462452,7 @@
  ástæður,nvfo,ástæða,ástæður
  ",",",",",",","
  á,aþ,á,á
 -eftír,nkeþ,eftír,eftír
-+eftír,nkeþ,eftír,eftir
++eftír,nkeþ,eftir,eftir
  ",",",",",",","
  ef,c,ef,ef
  þeir,fpkfn,hann,þeir
@@ -1194,6 +1401,15 @@
  ári,nheþ,ár,ári
  .,.,.,.
  ,,,
+@@ -475957,7 +475943,7 @@
+ að,cn,að,að
+ afnema,sng,afnema,afnema
+ þetta,fahen,þessi,þetta
+-fjárfestingareftírlit,nkeþ,fjárfestingareftírlitur,fjárfestingareftírlit
++fjárfestingareftírlit,nkeþ,fjárfestingareftírlitur,fjárfestingareftirlit
+ ",",",",",",","
+ og,c,og,og
+ þessar,favfn,þessi,þessar
 @@ -486343,7 +486329,7 @@
  kaupa,sng,kaupa,kaupa
  atvinnutæk,lhfosf,atvinnutækur,atvinnutæk
@@ -1270,6 +1486,15 @@
  eftirkomendum,nkfþ,eftirkomandi,eftirkomendum
  nokkurn,fokeo,nokkur,nokkurn
  tölulegan,lkeosf,tölulegur,tölulegan
+@@ -533033,7 +533015,7 @@
+ 6.3%,ta,6.3%,6.3%
+ lækkun,nveþ,lækkun,lækkun
+ ",",",",",",","
+-eftír,nken,eftír,eftir
++eftír,nken,eftir,eftir
+ því,faheþ,það,því
+ sem,ct,sem,sem
+ stendur,sfg3en,standa,stendur
 @@ -533505,7 +533487,7 @@
  einnig,aa,einnig,einnig
  veltuútsvar,nheo,veltuútsvar,veltuútsvar
@@ -1279,12 +1504,21 @@
  viðskiptum,nhfþ,viðskipti,viðskiptum
  ?,?,?,?
  ,,,
+@@ -563368,7 +563350,7 @@
+ aðra,fokfo,annar,aðra
+ aðila,nkfo,aðili,aðila
+ og,c,og,og
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ alveg,aa,alveg,alveg
+ sömu,fbvfþ,sami,sömu
+ reglum,nvfþ,regla,reglum
 @@ -564947,7 +564929,7 @@
  samt,aa,samt,samt
  lagt,ssg,leggja,lagt
  á,ao,á,á
 -eftír,nkeo,eftír,eftír
-+eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
  honum,fpkeþ,hann,honum
  ",",",",",",","
  en,c,en,en
@@ -1329,7 +1563,7 @@
  virðist,sfm3en,virða,virðist
  takmarkið,nheng,takmark,takmarkið
 -eftír,nkeo,eftír,eftír
-+eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
  yfirlýsingu,nveo,yfirlýsing,yfirlýsingu
  Sjálfstfl.,nhfþ-s,Sjálfstfl.,Sjálfstfl.
  vera,sng,vera,vera
@@ -1338,7 +1572,7 @@
  að,cn,að,að
  segja,sng,segja,segja
 -eftír,lkensf,eftír,eftír
-+eftír,lkensf,eftír,eftir
++eftír,lkensf,eftir,eftir
  þeim,favfþ,hún,þeim
  yfirlýsingum,nvfþ,yfirlýsing,yfirlýsingum
  ",",",",",",","
@@ -1360,6 +1594,33 @@
  og,c,og,og
  i,e,i,í
  þessari,faveþ,þessi,þessari
+@@ -620673,7 +620655,7 @@
+ en,c,en,en
+ tel,sfg1en,telja,tel
+ óþarft,lhensf,óþarfur,óþarft
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ lestur,nkeo,lestur,lestur
+ hans,fpkee,hann,hans
+ .,.,.,.
+@@ -622287,7 +622269,7 @@
+ dragnótaveiða,nvfe,dragnótaveiði,dragnótaveiða
+ ",",",",",",","
+ en,c,en,en
+-eftír,nken,eftír,eftir
++eftír,nken,eftir,eftir
+ á,aþ,á,á
+ gátu,sfg3fþ,geta,gátu
+ sveitarfélögin,nhfng,sveitarfélag,sveitarfélögin
+@@ -629810,7 +629792,7 @@
+ .,.,.,.
+ ,,,
+ Á,aþ,á,Á
+-eftír,nkeþ,eftír,eftir
++eftír,nkeþ,eftir,eftir
+ ræðum,nvfþ,ræða,ræðum
+ mínum,fevfþ,minn,mínum
+ hér,aa,hér,hér
 @@ -637993,7 +637975,7 @@
  herrar,nkfn,herra,herrar
  i,e,i,í
@@ -1378,6 +1639,15 @@
  á,aa,á,á
  ",",",",",",","
  þ.e.a.s.,as,þ.e.a.s.,þ.e.a.s.
+@@ -684208,7 +684190,7 @@
+ vaxtakjörum,nhfþ,vaxtakjör,vaxtakjörum
+ og,c,og,og
+ lánstima,sng,lánstima,lánstíma
+-eftírtalinna,lvfesf,eftírtalinn,eftirtalinna
++eftírtalinna,lvfesf,eftirtalinn,eftirtalinna
+ fjárfestingarlánastofnana,nvfe,fjárfestingarlánastofnun,fjárfestingarlánastofnana
+ :,:,:,:
+ húsnæðismálastjórnar,nvee,húsnæðismálastjórn,húsnæðismálastjórnar
 @@ -686828,7 +686810,7 @@
  hann,fpken,hann,hann
  er,sfg3en,vera,er
@@ -1405,6 +1675,15 @@
  sjálf,fbven,sjálfur,sjálf
  gert,ssg,gera,gert
  sér,fpveþ,sig,sér
+@@ -698524,7 +698506,7 @@
+ algerlega,aa,algerlega,algerlega
+ úr,aþ,úr,úr
+ skorðum,nvfþ,skorða,skorðum
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ verkfailið,nheng,verkfail,verkfallið
+ mikla,lhenvf,mikill,mikla
+ vorið,nheng,vor,vorið
 @@ -699596,7 +699578,7 @@
  .,.,.,.
  ,,,
@@ -1459,6 +1738,15 @@
  að,cn,að,að
  draga,sng,draga,draga
  ",",",",",",","
+@@ -706394,7 +706376,7 @@
+ mér,fp1eþ,ég,mér
+ er,sfg3en,vera,er
+ sagt,sþghen,segja,sagt
+-eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
+ plöggunum,nhfþg,plagg,plöggunum
+ ",",",",",",","
+ að,c,að,að
 @@ -706774,7 +706756,7 @@
  að,cn,að,að
  fara,sng,fara,fara
@@ -1531,6 +1819,15 @@
  aðilum,nkfþ,aðili,aðilum
  .,.,.,.
  ,,,
+@@ -722907,7 +722889,7 @@
+ þessari,faveþ,þessi,þessari
+ ríkisstj.,nvfþ,ríkisstj.,ríkisstj.
+ og,c,og,og
+-vínstri,nheþ,vínstur,vínstri
++vínstri,nheþ,vínstur,vinstri
+ stjórninní,nhen,stjórninní,stjórninni
+ sálugu,lveevf,sálugur,sálugu
+ .,.,.,.
 @@ -725784,7 +725766,7 @@
  vera,sng,vera,vera
  alllengi,aa,alllengi,alllengi
@@ -1576,6 +1873,24 @@
  hjá,aþ,hjá,hjá
  okkur,fp1fþ,ég,okkur
  ",",",",",",","
+@@ -736076,7 +736058,7 @@
+ fyrir,aþ,fyrir,fyrir
+ því,fpheþ,það,því
+ innan,ae,innan,innan
+-vínstri,lveevf,vínstur,vínstri
++vínstri,lveevf,vínstur,vinstri
+ stjórnarinnar,nveeg,stjórn,stjórnarinnar
+ að,cn,að,að
+ taka,sng,taka,taka
+@@ -736893,7 +736875,7 @@
+ hingað,aa,hingað,hingað
+ á,ao,á,á
+ þingið,nheog,þing,þingið
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ sitt,feheo,sinn,sitt
+ fri,e,fri,frí
+ ",",",",",",","
 @@ -737046,7 +737028,7 @@
  að,cn,að,að
  tala,sng,tala,tala
@@ -1603,6 +1918,24 @@
  svo,aa,svo,svo
  lágt,lheosf,lágur,lágt
  ",",",",",",","
+@@ -741685,7 +741667,7 @@
+ .,.,.,.
+ ,,,
+ Opinbert,lhensf,opinber,Opinbert
+-eftírlit,nkeo,eftírlitur,eftirlit
++eftírlit,nkeo,eftirlitur,eftirlit
+ 1.4,ta,1.4,1.4
+ millj.,nvfn,millj.,millj.
+ 1955,ta,1955,1955
+@@ -741879,7 +741861,7 @@
+ reynslu,nveo,reynsla,reynslu
+ ",",",",",",","
+ að,aþ,að,að
+-eftír,nkeþ,eftír,eftir
++eftír,nkeþ,eftir,eftir
+ því,faheþ,það,því
+ sem,ct,sem,sem
+ oftar,aam,oft,oftar
 @@ -743016,7 +742998,7 @@
  vinstrí,lvfnof,vinstrí,vinstri
  stjórnin,nveng,stjórn,stjórnin
@@ -1693,6 +2026,15 @@
  hugsanlega,lkeovf,hugsanlegur,hugsanlega
  bónbjargadalinn,nkeog,bónbjargadalur,bónbjargadalinn
  ",",",",",",","
+@@ -758357,7 +758339,7 @@
+ því,fpheþ,það,því
+ bannorð,nhen,bannorð,bannorð
+ meðal,ae,meðal,meðal
+-vínstri,lkfevf,vínstur,vínstri
++vínstri,lkfevf,vínstur,vinstri
+ manna,nkfe,maður,manna
+ .,.,.,.
+ ,,,
 @@ -759083,7 +759065,7 @@
  ,,,
  Hann,fpken,hann,Hann
@@ -1860,7 +2202,7 @@
  er,sfg3en,vera,er
  beint,aa,beint,beint
 -eftír,nhen,eftír,eftír
-+eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
  hinum,gkeþ,hinn,hinum
  fræðilega,lkeþvf,fræðilegur,fræðilega
  kapítallsma,nkeþ,kapítallsmi,kapítalisma
@@ -1914,7 +2256,7 @@
  næstu,lvfþve,næstur,næstu
  ræðum,nvfþ,ræða,ræðum
 -eftír,nkeo,eftír,eftír
-+eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
  ræðu,nvee,ræða,ræðu
  hæstv.,lkensf,hæstv.,hæstv.
  forsrh.,nken,forsrh.,forsrh.
@@ -1990,6 +2332,15 @@
  hv.,sþgven,hv.,hv.
  þm.,nheo,þm.,þm.
  vorum,sfg1fþ,vera,vorum
+@@ -815471,7 +815453,7 @@
+ og,c,og,og
+ ráðh.,nkee,ráðh.,ráðh.
+ ",",",",",",","
+-eftír,nkeþ,eftír,eftir
++eftír,nkeþ,eftir,eftir
+ að,c,að,að
+ ég,fp1en,ég,ég
+ talaðí,lvfnof,talaðí,talaði
 @@ -818696,7 +818678,7 @@
  ",",",",",",","
  og,c,og,og
@@ -2008,6 +2359,15 @@
  aðeins,aa,aðeins,aðeins
  1,ta,1,1
  kr.,nvfn,kr.,kr.
+@@ -822641,7 +822623,7 @@
+ sniðu,sfg3fþ,sníða,sniðu
+ sér,fpkfþ,sig,sér
+ stakk,sfg3eþ,stinga,stakk
+-eftír,lkensf,eftír,eftir
++eftír,lkensf,eftir,eftir
+ vexti,nkfo,vöxtur,vexti
+ .,.,.,.
+ ,,,
 @@ -823173,7 +823155,7 @@
  vilja,sng,vilja,vilja
  hrifsa,sfg3fn,hrifsa,hrifsa
@@ -2092,7 +2452,7 @@
  Þar,aa,þar,Þar
  á,aþ,á,á
 -eftír,nkeþ,eftír,eftír
-+eftír,nkeþ,eftír,eftir
++eftír,nkeþ,eftir,eftir
  segir,sfg3en,segja,segir
  svo,aa,svo,svo
  ",",",",",",","
@@ -2114,6 +2474,15 @@
  viðurkenningu,nveo,viðurkenning,viðurkenningu
  undanfarinna,lvfesf,undanfarinn,undanfarinna
  gengisfellinga,nvfe,gengisfelling,gengisfellinga
+@@ -832962,7 +832944,7 @@
+ Reykjavík,nveþ-s,Reykjavík,Reykjavík
+ 1951,ta,1951,1951
+ ",",",",",",","
+-eftír,nken,eftír,eftir
++eftír,nken,eftir,eftir
+ gengislækkunina,nveog,gengislækkun,gengislækkunina
+ þá,aa,þá,þá
+ ",",",",",",","
 @@ -837342,7 +837324,7 @@
  styrkjakerfisins,nheeg,styrkjakerfi,styrkjakerfisins
  ",",",",",",","
@@ -2146,7 +2515,7 @@
  þess,fphee,það,þess
  ",",",",",",","
 -eftír,nken,eftír,eftír
-+eftír,nken,eftír,eftir
++eftír,nken,eftir,eftir
  að,c,að,að
  hún,fpven,hún,hún
  er,sfg3en,vera,er
@@ -2166,6 +2535,15 @@
 -síg,nkeo,sígur,síg
 +síg,nkeo,sígur,sig
  rétt,aa,rétt,rétt
+ ",",",",",",","
+ að,c,að,að
+@@ -848339,7 +848321,7 @@
+ kemur,sfg3en,koma,kemur
+ fyrsta,lvenve,fyrr,fyrsta
+ launahækkunin,nveng,launahækkun,launahækkunin
+-eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
+ það,fahen,það,það
  ",",",",",",","
  að,c,að,að
 @@ -849984,7 +849966,7 @@
@@ -2213,6 +2591,15 @@
  upplýst,ssg,upplýsa,upplýst
  um,ao,um,um
  það,fpheo,það,það
+@@ -859572,7 +859554,7 @@
+ merkingu,nveþ,merking,merkingu
+ orðsins,nheeg,orð,orðsins
+ „,nhen,„,„
+-vínstri,nheþ,vínstur,vínstri
++vínstri,nheþ,vínstur,vinstri
+ “,nkeo,“ur,“
+ má,sfg3en,mega,má
+ segja,sng,segja,segja
 @@ -866169,7 +866151,7 @@
  almennings,nkee,almenningur,almennings
  í,aþ,í,í
@@ -2238,7 +2625,7 @@
 -sina,nvfe,sina,sina
 -eftír,nkeo,eftír,eftír
 +sina,nvfe,sina,sína
-+eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
  því,fpheþ,það,því
  ",",",",",",","
  hvaða,fshen,hvaða,hvaða
@@ -2278,6 +2665,42 @@
  ",",",",",",","
  svo,aa,svo,svo
  sem,ct,sem,sem
+@@ -901138,7 +901120,7 @@
+ að,cn,að,að
+ muna,sng,muna,muna
+ jafnt,aa,jafnt,jafnt
+-eftír,lkensf,eftír,eftir
++eftír,lkensf,eftir,eftir
+ því,fpheþ,það,því
+ ",",",",",",","
+ að,c,að,að
+@@ -902506,7 +902488,7 @@
+ ég,fp1en,ég,ég
+ sérstaklega,aa,sérstaklega,sérstaklega
+ óska,sng,óska,óska
+-eftír,nkeþ,eftír,eftir
++eftír,nkeþ,eftir,eftir
+ því,faheþ,það,því
+ sem,ct,sem,sem
+ þm.,sbg2en,þm.,þm.
+@@ -903273,7 +903255,7 @@
+ fram,aa,fram,fram
+ nú,aa,nú,nú
+ á,ao,á,á
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ ",",",",",",","
+ mun,sfg3en,munu,mun
+ sennilega,aa,sennilega,sennilega
+@@ -905547,7 +905529,7 @@
+ minni,feveþ,minn,minni
+ hálfu,nveþ,hálfa,hálfu
+ þing,nheo,þing,þing
+-eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
+ þing,nheo,þing,þing
+ tilraun,nven,tilraun,tilraun
+ til,ae,til,til
 @@ -911175,7 +911157,7 @@
  að,c,að,að
  á,aþ,á,á
@@ -2296,6 +2719,15 @@
  búin,lhfosf,búinn,búin
  ",",",",",",","
  áður,aa,áður,áður
+@@ -932975,7 +932957,7 @@
+ bíða,sng,bíða,bíða
+ óþolandi,lvfnof,óþolandi,óþolandi
+ lengi,aa,lengi,lengi
+-eftír,lkensf,eftír,eftir
++eftír,lkensf,eftir,eftir
+ því,fpheþ,það,því
+ að,cn,að,að
+ komast,snm,koma,komast
 @@ -933971,7 +933953,7 @@
  að,c,að,að
  okkur,fp1fo,ég,okkur
@@ -2305,6 +2737,15 @@
  sést,sfm3en,sjá,sést
  yfir,ao,yfir,yfir
  að,cn,að,að
+@@ -946224,7 +946206,7 @@
+ gætu,svg3fþ,geta,gætu
+ nemendur,nkfn,nemandi,nemendur
+ þannig,aa,þannig,þannig
+-eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
+ 4,ta,4,4
+ ár,nhfn,ár,ár
+ verið,sbg2fn,vera,verið
 @@ -960295,7 +960277,7 @@
  og,c,og,og
  látið,sþghen,láta,látið
@@ -2314,6 +2755,15 @@
  í,aþ,í,í
  veðri,nheþ,veður,veðri
  vaka,sng,vaka,vaka
+@@ -965536,7 +965518,7 @@
+ í,aþ,í,í
+ besta,lheþve,góður,besta
+ lagi,nheþ,lag,lagi
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ kosningarnar,nvfog,kosning,kosningarnar
+ ?,?,?,?
+ ,,,
 @@ -968690,7 +968672,7 @@
  að,cn,að,að
  segja,sng,segja,segja
@@ -2398,6 +2848,15 @@
  ",",",",",",","
  að,c,að,að
  í,aþ,í,í
+@@ -1018061,7 +1018029,7 @@
+ n.k.,as,n.k.,n.k.
+ ",",",",",",","
+ eða,c,eða,eða
+-eftír,nkeo,eftír,eftir
++eftír,nkeo,eftir,eftir
+ 9-12,ta,9-12,9--12
+ daga,nkfo,dagur,daga
+ ",",",",",",","
 @@ -1020169,7 +1020137,7 @@
  ",",",",",",","
  á,aþ,á,á
@@ -2407,6 +2866,15 @@
  ",",",",",",","
  og,c,og,og
  er,sfg3en,vera,er
+@@ -1032397,7 +1032365,7 @@
+ væri,svg3eþ,vera,væri
+ betur,aam,vel,betur
+ staddur,lkensf,staddur,staddur
+-eftlr,nken,eftlr,eftlr
++eftlr,nken,eftlr,eftir
+ en,c,en,en
+ áður,aa,áður,áður
+ .,.,.,.
 @@ -1054502,7 +1054470,7 @@
  mundi,svg3eþ,munu,mundi
  ná,sng,ná,ná
@@ -2434,6 +2902,24 @@
  1947,ta,1947,1947
  og,c,og,og
  áður,aa,áður,áður
+@@ -1095678,7 +1095646,7 @@
+ að,c,að,að
+ farið,sþghen,fara,farið
+ sé,svg3en,vera,sé
+-eftír,nhen,eftír,eftir
++eftír,nhen,eftir,eftir
+ þeim,fahfþ,það,þeim
+ tilmælum,nhfþ,tilmæli,tilmælum
+ ",",",",",",","
+@@ -1095903,7 +1095871,7 @@
+ hefði,svg1eþ,hafa,hefði
+ ekki,aa,ekki,ekki
+ óskað,ssg,óska,óskað
+-eftír,nkeþ,eftír,eftir
++eftír,nkeþ,eftir,eftir
+ að,cn,að,að
+ þurfa,sng,þurfa,þurfa
+ að,cn,að,að
 @@ -1123086,7 +1123054,7 @@
  húsbyggjendur,nkfn,húsbyggjandi,húsbyggjendur
  í,aþ,í,í
@@ -2461,3 +2947,12 @@
  gerð,sþgven,gera,gerð
  svona,aa,svona,svona
  fljótt,aa,fljótt,fljótt
+@@ -1139075,7 +1139043,7 @@
+ taka,sng,taka,taka
+ hér,aa,hér,hér
+ fram,ao,fram,fram
+-eftírgreind,nveo,eftírgreind,eftirgreind
++eftírgreind,nveo,eftirgreind,eftirgreind
+ aðalatriði,nheþ,aðalatriði,aðalatriði
+ :,:,:,:
+ Kaupfélagið,nheogs,Kaupfélagið,Kaupfélagið
