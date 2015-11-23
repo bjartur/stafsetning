@@ -11,7 +11,7 @@ Forritið þarfnast skjölin 'althingi_errors/079.csv' og 'althingi_errors/080.c
     make known_errors.csv
 
 ## Keyra forrit
-    python3 spell.py [skjal_til_leiðréttingar.csv]
+    python3 spell.py filename.csv
     
 ## Niðurstöður
-Forritið býr til skjal sem heitir result.csv sem inniheldur leiðréttingar
+Niðurstöður eru í skjalinu filename_corrected.csv

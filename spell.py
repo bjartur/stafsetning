@@ -8,6 +8,7 @@ if len(sys.argv) > 1:
     fi = sys.argv[1]
     filename = fi
 
+
 def read_files():
     with open(training_data, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)

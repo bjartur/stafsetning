@@ -88,7 +88,10 @@ def read_in_test_data(word_count, word_frequency, following_word):
         prev_word = ""
         prev_guess = ""
         before = time.process_time()
-        with open('result.csv', 'w', newline='') as csvresultfile:
+        new_file = filename[:-4]+"_corrected.csv"
+        with open(new_file, 'w', newline='') as csvresultfile:
+            print('Creating corrections from:', filename)
+            print('Correction are in file', new_file)
             writer = csv.writer(csvresultfile)
             writer.writerow(['Word', 'Tag', 'Lemma', 'CorrectWord'])
             for row in reader:
