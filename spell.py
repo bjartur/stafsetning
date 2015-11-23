@@ -6,24 +6,33 @@ from parameters import *
 
 
 def read_files():
-    with open("known_errors.csv", newline='', encoding='utf-8') as csvfile:
+    with open(training_data, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
-        print("Creating dict from known_corrections.csv")
+        print("Creating dict from:", training_data)
         prev_word = ""
         for row in reader:
             word = row['CorrectWord']
-            prev_word = create_dicts(prev_word, word)
+            if word == ",":
+                continue
+            if not prev_word:
+                word = word.lower()
+            populate_word_frequency(word)
+            populate_following_word(prev_word, word)
+            global word_count
+            word_count += 1
+            prev_word = word
 
 
-def create_dicts(prev_word, cur_word):
-    if cur_word == ",":
-        return prev_word
-    if not prev_word:
-        cur_word = cur_word.lower()
-    if not word_frequency.get(cur_word):
-        word_frequency[cur_word] = 1
+# Populates a dictionary of all words and how common they are
+def populate_word_frequency(word):
+    if not word_frequency.get(word):
+        word_frequency[word] = 1
     else:
-        word_frequency[cur_word] += 1
+        word_frequency[word] += 1
+
+
+# Populates a dictionary of following words and their occurrences
+def populate_following_word(prev_word, cur_word):
     if not following_word.get(prev_word):
         following_word[prev_word] = {}
         following_word[prev_word][cur_word] = 1
@@ -31,10 +40,7 @@ def create_dicts(prev_word, cur_word):
         following_word[prev_word][cur_word] = 1
     else:
         following_word[prev_word][cur_word] += 1
-    prev_word = cur_word
-    global word_count
-    word_count += 1
-    return prev_word
+
 
 read_files()
 

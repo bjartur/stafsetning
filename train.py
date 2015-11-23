@@ -1,5 +1,5 @@
 import csv
-from pprint import pprint
+#from pprint import pprint
 from parameters import *
 
 
@@ -29,35 +29,25 @@ def diff(typeds, corrects):
                 correction = (typed, correct)
     return correction
 
-missing = [83, 86, 87, 88, 98, 104, 109]
 
-
-def characterwise(csvs):
+def characterwise():
     similarity = {}
-    for i in csvs:
-        if i not in missing:
-            prefix = 'althingi_errors/'
-            if i < 100:
-                filename = prefix + '0' + str(i) + '.csv'
-            else:
-                filename = prefix + str(i) + '.csv'
-            with open(filename, newline='', encoding='utf-8') as csvfile:
-                reader = csv.DictReader(csvfile)
-                print("Finding similarity characters in althingi error nr: ", i)
-                prev_word = ""
-                for row in reader:
-                    result = diff(row['Word'], row['CorrectWord'])
-                    if result is not None: #if neither equal nor too different
-                        mistake, correction = result
-                        if mistake not in similarity:
-                            similarity[mistake] = dict()
-                        if correction not in similarity[mistake]:
-                            similarity[mistake][correction] = 0
-                        similarity[mistake][correction] += 1
+    for file in characterwise_training_data:
+        with open(file, newline='', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            print("Finding similarity characters in:", file)
+            for row in reader:
+                result = diff(row['Word'], row['CorrectWord'])
+                if result is not None: #if neither equal nor too different
+                    mistake, correction = result
+                    if mistake not in similarity:
+                        similarity[mistake] = dict()
+                    if correction not in similarity[mistake]:
+                        similarity[mistake][correction] = 0
+                    similarity[mistake][correction] += 1
 
     # Filter out uncommon errors
     similarity = { k: clean(v) for k, v in similarity.items() if clean(v) }
-    
 
     # Sort letters by how similar they are to other letters in general
     confusingness = { k: sum(v.values()) for k, v in similarity.items() }
@@ -67,5 +57,5 @@ def characterwise(csvs):
 
     return confusing, similar
 
-if __name__ == '__main__':
-    pprint(characterwise([79,80]))
+# if __name__ == '__main__':
+#     pprint(characterwise([79,80]))

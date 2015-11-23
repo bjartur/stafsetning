@@ -6,6 +6,13 @@ from parameters import *
 
 
 def read_in_test_data(word_count, word_frequency, following_word):
+
+    confusing, similar = train.characterwise()
+    unnoticed_errors = 0
+    wrong_guesses = 0
+    false_errors = 0
+    total_words = 0
+
     def exists(word):
         return following_word.get(word)
 
@@ -76,15 +83,10 @@ def read_in_test_data(word_count, word_frequency, following_word):
                 guess = possibility
         return guess or current_word
 
-    confusing, similar = train.characterwise(range(82,83))
-    with open('althingi_errors/095.csv', newline='', encoding='utf-8') as csvfile:
+    with open(filename, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         prev_word = ""
         prev_guess = ""
-        unnoticed_errors = 0
-        wrong_guesses = 0
-        false_errors = 0
-        total_words = 0
         before = time.process_time()
         with open('result.csv', 'w', newline='') as csvresultfile:
             writer = csv.writer(csvresultfile)
@@ -95,31 +97,41 @@ def read_in_test_data(word_count, word_frequency, following_word):
                     continue
                 guess = make_guess(confusing, similar, prev_word, prev_guess, word)
                 writer.writerow([row['Word'], row['Tag'],row['Lemma'],guess])
-                correct_word = row['CorrectWord']
-                if guess != correct_word:
-                    if word == guess:
-                        if print_all_errors:
-                            print("unnoticed error: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
-                        unnoticed_errors += 1
-                    else:
-                        if word == correct_word:
+
+                # Only for accuracy estimation during development phase
+                if dev_mode:
+                    correct_word = row['CorrectWord']
+                    if guess != correct_word:
+                        if word == guess:
                             if print_all_errors:
-                                print("false error: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
-                            false_errors += 1
+                                print("unnoticed error: guess: ", guess, " correct word", correct_word, " word:", word,
+                                      " prev_word:", repr(prev_word))
+                            unnoticed_errors += 1
                         else:
-                            if print_all_errors:
-                                print("wrong guess: guess: ", guess, " correct word", correct_word, " word:", word, " prev_word:", repr(prev_word))
-                            wrong_guesses += 1
-                total_words += 1
+                            if word == correct_word:
+                                if print_all_errors:
+                                    print("false error: guess: ", guess, " correct word", correct_word, " word:", word,
+                                          " prev_word:", repr(prev_word))
+                                false_errors += 1
+                            else:
+                                if print_all_errors:
+                                    print("wrong guess: guess: ", guess, " correct word", correct_word, " word:", word,
+                                          " prev_word:", repr(prev_word))
+                                wrong_guesses += 1
+                    total_words += 1
+
+                # Updating varibles
                 prev_guess = guess
                 prev_word = word
-        wrong_guesses_percent = wrong_guesses/total_words*100
-        false_errors_percent = false_errors/total_words*100
-        unnoticed_errors_percent = unnoticed_errors/total_words*100
-        print("Wrong guesses:", wrong_guesses_percent)
-        print("False errors:", false_errors_percent)
-        print("Unnoticed errors:", unnoticed_errors_percent)
-        print("Total error:", wrong_guesses_percent + false_errors_percent + unnoticed_errors_percent)
-        print()
-        print("Duration:", time.process_time() - before)
-        return wrong_guesses_percent, false_errors_percent, unnoticed_errors_percent
+
+        # Only for accuracy estimation during development phase
+        if dev_mode:
+            wrong_guesses_percent = wrong_guesses/total_words*100
+            false_errors_percent = false_errors/total_words*100
+            unnoticed_errors_percent = unnoticed_errors/total_words*100
+            print("Wrong guesses:", wrong_guesses_percent)
+            print("False errors:", false_errors_percent)
+            print("Unnoticed errors:", unnoticed_errors_percent)
+            print("Total error:", wrong_guesses_percent + false_errors_percent + unnoticed_errors_percent)
+            print()
+            print("Duration:", time.process_time() - before)
