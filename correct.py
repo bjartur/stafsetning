@@ -83,14 +83,14 @@ def read_in_test_data(word_count, word_frequency, following_word):
                 guess = possibility
         return guess or current_word
 
-    with open(filename, newline='', encoding='utf-8') as csvfile:
+    with open(filename[0], newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         prev_word = ""
         prev_guess = ""
         before = time.process_time()
-        new_file = filename[:-4]+"_corrected.csv"
+        new_file = filename[0][:-4]+"_corrected.csv"
         with open(new_file, 'w', newline='') as csvresultfile:
-            print('Creating corrections from:', filename)
+            print('Creating corrections from:', filename[0])
             print('Correction are in file', new_file)
             writer = csv.writer(csvresultfile)
             writer.writerow(['Word', 'Tag', 'Lemma', 'CorrectWord'])

@@ -1,6 +1,4 @@
-# Put the name of your input file in line below
-filename = 'althingi_errors/095.csv' # <- OVER HERE!
-
+filename = []
 
 max_change_context = 1
 max_change_optical = 2
@@ -22,5 +20,3 @@ following_word = {}
 word_count = 0
 # Files missing in althingi error data
 missing = [83, 86, 87, 88, 98, 104, 109]
-
-# Parameters used in dev mode for estimating accuracy

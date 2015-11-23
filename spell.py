@@ -6,8 +6,8 @@ from parameters import *
 
 if len(sys.argv) > 1:
     fi = sys.argv[1]
-    filename = fi
-
+    filename.append(fi)
+    print(filename)
 
 def read_files():
     with open(training_data, newline='', encoding='utf-8') as csvfile:

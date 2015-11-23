@@ -34,7 +34,7 @@ def characterwise():
     similarity = {}
     with open(training_data, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
-        print("Finding similarity characters in:", file)
+        print("Finding similarity characters in:", training_data)
         for row in reader:
             result = diff(row['Word'], row['CorrectWord'])
             if result is not None: #if neither equal nor too different
