@@ -32,19 +32,18 @@ def diff(typeds, corrects):
 
 def characterwise():
     similarity = {}
-    for file in characterwise_training_data:
-        with open(file, newline='', encoding='utf-8') as csvfile:
-            reader = csv.DictReader(csvfile)
-            print("Finding similarity characters in:", file)
-            for row in reader:
-                result = diff(row['Word'], row['CorrectWord'])
-                if result is not None: #if neither equal nor too different
-                    mistake, correction = result
-                    if mistake not in similarity:
-                        similarity[mistake] = dict()
-                    if correction not in similarity[mistake]:
-                        similarity[mistake][correction] = 0
-                    similarity[mistake][correction] += 1
+    with open(training_data, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        print("Finding similarity characters in:", file)
+        for row in reader:
+            result = diff(row['Word'], row['CorrectWord'])
+            if result is not None: #if neither equal nor too different
+                mistake, correction = result
+                if mistake not in similarity:
+                    similarity[mistake] = dict()
+                if correction not in similarity[mistake]:
+                    similarity[mistake][correction] = 0
+                similarity[mistake][correction] += 1
 
     # Filter out uncommon errors
     similarity = { k: clean(v) for k, v in similarity.items() if clean(v) }

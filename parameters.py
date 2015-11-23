@@ -11,8 +11,6 @@ min_err_freq = 2
 # File for training data for populating word_frequency and following_word
 training_data = "known_errors.csv"
 # Files used in creating character specific training data
-characterwise_training_data = ['althingi_errors/079.csv']
-# Print out every error and error type when it happens
 print_all_errors = True
 # When developing we can see the error rate from previously corrected data
 dev_mode = True

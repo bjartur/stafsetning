@@ -112,9 +112,6 @@ docs/_build/
 target/
 
 # Data to big for github
-althingi_errors/
-althingi_tagged/
-althingi_text/
 known_errors.csv
 known_errors.csv.rej
 known_errors.csv.orig
