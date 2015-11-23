@@ -46,21 +46,16 @@ def read_in_test_data():
         else:
             guess = ocr_correction(word)
             if guess is None:
-                if exists(prev_word):
-                    guess = best_guess(prev_word, word)
-                else:
-                    guess = best_guess(prev_guess, word)
-            if not guess:
-                guess = best_guess(None, word)
-
+                guess = best_guess(prev_guess, word)
             if prev_word == ".":
                 # The first word in a sentence.
                 guess = guess.capitalize()
-                i = guess.find('-')
-                if i > 0:
-                    former = guess[:i+1]
-                    latter = guess[i+1:].capitalize()
-                    guess = former + latter
+            i = guess.find('-')
+            if i > 0:
+                guess = guess.capitalize()
+                former = guess[:i+1]
+                latter = guess[i+1:].capitalize()
+                guess = former + latter
         return guess
 
     # Assuming previous_word exists
