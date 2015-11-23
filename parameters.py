@@ -26,4 +26,5 @@ class Parameters:
     total_words = 0
 
     # Timing
-    Before = ""
+    Before = 0
+    
