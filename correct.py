@@ -3,15 +3,12 @@
 import csv, editdistance, time
 import train
 from parameters import *
+from error_estimation import *
 
 
 def read_in_test_data():
 
     confusing, similar = train.characterwise()
-    unnoticed_errors = 0
-    wrong_guesses = 0
-    false_errors = 0
-    total_words = 0
 
     def exists(word):
         return Parameters.following_word.get(word)
@@ -67,7 +64,6 @@ def read_in_test_data():
                     guess = former + latter
         return guess
 
-
     # Assuming previous_word exists
     def best_guess(previous_word, current_word):
         least_distance = Parameters.max_change_context
@@ -87,7 +83,7 @@ def read_in_test_data():
         reader = csv.DictReader(csvfile)
         prev_word = ""
         prev_guess = ""
-        before = time.process_time()
+        Parameters.before = time.process_time()
         new_file = Parameters.filename[:-4]+"_corrected.csv"
         with open(new_file, 'w', newline='') as csvresultfile:
             print('Creating corrections from:', Parameters.filename)
@@ -103,24 +99,7 @@ def read_in_test_data():
                 # Only for accuracy estimation during development phase
                 if Parameters.dev_mode:
                     correct_word = row['CorrectWord']
-                    if guess != correct_word:
-                        if word == guess:
-                            if Parameters.print_all_errors:
-                                print("unnoticed error: guess: ", guess, " correct word", correct_word, " word:", word,
-                                      " prev_word:", repr(prev_word))
-                            unnoticed_errors += 1
-                        else:
-                            if word == correct_word:
-                                if Parameters.print_all_errors:
-                                    print("false error: guess: ", guess, " correct word", correct_word, " word:", word,
-                                          " prev_word:", repr(prev_word))
-                                false_errors += 1
-                            else:
-                                if Parameters.print_all_errors:
-                                    print("wrong guess: guess: ", guess, " correct word", correct_word, " word:", word,
-                                          " prev_word:", repr(prev_word))
-                                wrong_guesses += 1
-                    total_words += 1
+                    print_errors_and_type(word, correct_word, guess, prev_word)
 
                 # Updating varibles
                 prev_guess = guess
@@ -128,13 +107,5 @@ def read_in_test_data():
 
         # Only for accuracy estimation during development phase
         if Parameters.dev_mode:
-            wrong_guesses_percent = wrong_guesses/total_words*100
-            false_errors_percent = false_errors/total_words*100
-            unnoticed_errors_percent = unnoticed_errors/total_words*100
-            print("Wrong guesses:", wrong_guesses_percent)
-            print("False errors:", false_errors_percent)
-            print("Unnoticed errors:", unnoticed_errors_percent)
-            print("Total error:", wrong_guesses_percent + false_errors_percent + unnoticed_errors_percent)
-            print()
-            print("Duration:", time.process_time() - before)
+            print_error_estimation()
         print('Correction are in file', new_file)

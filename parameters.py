@@ -18,3 +18,12 @@ class Parameters:
     word_count = 0
     # Files missing in althingi error data
     missing = [83, 86, 87, 88, 98, 104, 109]
+
+    # Error counters for development proposes
+    unnoticed_errors = 0
+    wrong_guesses = 0
+    false_errors = 0
+    total_words = 0
+
+    # Timing
+    Before = ""
