@@ -17,7 +17,11 @@ def villuhlutfoll(folder, files):
 
     for i in files:
 
-        with open(folder + slash + '0' + str(i) + '.csv', encoding = 'utf-8') as errorfile:
+        if i < 100:
+            zero = "0"
+        else:
+            zero = ""
+        with open(folder + slash + zero + str(i) + '.csv', encoding = 'utf-8') as errorfile:
             reader = csv.reader(errorfile)
             nerrors = 0
             nrow = 0
@@ -32,7 +36,7 @@ def villuhlutfoll(folder, files):
 
     for i in files:
     
-        with open(folder + slash + '0' + str(i) + '.csv', encoding = 'utf-8') as errorfile:
+        with open(folder + slash + zero + str(i) + '.csv', encoding = 'utf-8') as errorfile:
             reader = csv.reader(errorfile)
             nerrors = 0
             nrow = 0
@@ -55,24 +59,18 @@ def villuhlutfoll(folder, files):
     return dicto
 
 if __name__ == '__main__':
-	if len(argv) <= 1:
-		a = 79
-	else:
-		a = argv[1]
-	if len(argv) <= 2:
-		b = 81
-	else:
-		b = argv[2]
-	if len(argv) <= 3:
-		foldername = 'althingi_errors'
-	else:
-		foldername = argv[3]
+    if len(argv) <= 1:
+        a = 79
+    else:
+        a = int(argv[1])
+    if len(argv) <= 2:
+        foldername = 'althingi_errors'
+    else:
+        foldername = argv[2]
 
-	files = list(filter(lambda filename: filename not in missing, range(a,b+1)))
-	hlutfall = villuhlutfoll(foldername, files) #dict
-	hlutfoll = hlutfall.values() #list
-	
-	for filename in files:
-		print("Villutíðni í skrá #{:d}\t{:.2%}".format(filename, hlutfall[filename]), sep='\t')
-	print("-"*10)
-	print("Villutíðni (meðaltal):\t{:.2%}".format(sum(hlutfoll)/len(hlutfoll)))
+    hlutfall = villuhlutfoll(foldername, [a]) #dict
+    hlutfoll = hlutfall.values() #list
+    
+    print("Villutíðni í skrá #{:d}\t{:.2%}".format(a, hlutfall[a]), sep='\t')
+    print("-"*10)
+    print("Villutíðni (meðaltal):\t{:.2%}".format(sum(hlutfoll)/len(hlutfoll)))
