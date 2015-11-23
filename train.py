@@ -1,6 +1,7 @@
 import csv
 #from pprint import pprint
 from parameters import *
+from sys import stderr
 
 
 # skilar þeim lyklagildispörum þar sem gildið er a.m.k. min_err_freq
@@ -34,7 +35,7 @@ def characterwise():
     similarity = {}
     with open(Parameters.training_data, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
-        print("Finding similarity characters in:", Parameters.training_data)
+        print("Finding similarity characters in:", Parameters.training_data, file=stderr)
         for row in reader:
             result = diff(row['Word'], row['CorrectWord'])
             if result is not None: #if neither equal nor too different
@@ -56,5 +57,5 @@ def characterwise():
 
     return confusing, similar
 
-# if __name__ == '__main__':
-#     pprint(characterwise([79,80]))
+if __name__ == '__main__':
+    pprint(characterwise([79,80]))

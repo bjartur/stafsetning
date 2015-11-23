@@ -1,5 +1,6 @@
 import time
 from parameters import *
+import sys
 
 
 # Development purposes, prints types of errors
@@ -8,18 +9,18 @@ def print_errors_and_type(word, correct_word, guess, prev_word):
         if word == guess:
             if Parameters.print_all_errors:
                 print("unnoticed error: guess: ", guess, " correct word", correct_word, " word:", word,
-                      " prev_word:", repr(prev_word))
+                      " prev_word:", repr(prev_word), file=sys.stderr)
             Parameters.unnoticed_errors += 1
         else:
             if word == correct_word:
                 if Parameters.print_all_errors:
                     print("false error: guess: ", guess, " correct word", correct_word, " word:", word,
-                          " prev_word:", repr(prev_word))
+                          " prev_word:", repr(prev_word), file=sys.stderr)
                 Parameters.false_errors += 1
             else:
                 if Parameters.print_all_errors:
                     print("wrong guess: guess: ", guess, " correct word", correct_word, " word:", word,
-                          " prev_word:", repr(prev_word))
+                          " prev_word:", repr(prev_word), file=sys.stderr)
                 Parameters.wrong_guesses += 1
     Parameters.total_words += 1
 
