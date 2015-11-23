@@ -6,12 +6,15 @@ from parameters import *
 
 if len(sys.argv) > 1:
     Parameters.filename = sys.argv[1]
+else:
+    sys.stderr.write('FILENAME missing.\nSynopsis:\tpython3 spell.py FILENAME.csv\nOutput will be written to FILENAME_corrected.csv.\n')
+    exit()
 
 
 def read_files():
     with open(Parameters.training_data, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
-        print("Creating dict from:", Parameters.training_data)
+        print("Creating dict from:", Parameters.training_data, file=sys.stderr)
         prev_word = ""
         for row in reader:
             word = row['CorrectWord']
