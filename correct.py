@@ -13,25 +13,24 @@ def read_in_test_data():
     def exists(word):
         return Parameters.following_word.get(word)
 
-    def skipta(word, i, becomes):
-        return word[:i] + becomes + word[i+1:]
+    def change(word, i, subsitute):
+        return word[:i] + subsitute + word[i+1:]
 
     # þær stafarunur sem eru einni stafavíxlun frá word
-    def fikta(word):
+    def explore(word):
         for c in confusing:
             for i, letter in enumerate(word):
                 if letter == c:
                     for alternative in similar[letter]:
-                        yield skipta(word, i, alternative)
-
+                        yield change(word, i, alternative)
 
     def ocr_correction(word):
-        for m in fikta(word):
+        for m in explore(word):
             if exists(m):
                 return m
-        if 2 <= Parameters.max_change_optical:
-            for m in fikta(word):
-                for n in fikta(m):
+        if 2 == Parameters.max_change_optical:
+            for m in explore(word):
+                for n in explore(m):
                     if exists(n):
                         return n
         if 2 < Parameters.max_change_optical:

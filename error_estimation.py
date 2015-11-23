@@ -2,6 +2,7 @@ import time
 from parameters import *
 
 
+# Development purposes, prints types of errors
 def print_errors_and_type(word, correct_word, guess, prev_word):
     if guess != correct_word:
         if word == guess:
@@ -23,6 +24,7 @@ def print_errors_and_type(word, correct_word, guess, prev_word):
     Parameters.total_words += 1
 
 
+# Development purposes, print total error estimation
 def print_error_estimation():
     wrong_guesses_percent = Parameters.wrong_guesses/Parameters.total_words*100
     false_errors_percent = Parameters.false_errors/Parameters.total_words*100
