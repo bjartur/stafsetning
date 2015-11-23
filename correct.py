@@ -28,7 +28,7 @@ def read_in_test_data():
                         yield skipta(word, i, alternative)
 
 
-    def ocr_correction(word, confusing, similar):
+    def ocr_correction(word):
         for m in fikta(word):
             if exists(m):
                 return m
@@ -40,7 +40,7 @@ def read_in_test_data():
         if 2 < Parameters.max_change_optical:
             raise NotImplementedError
 
-    def make_guess(confusing, similar, prev_word, prev_guess, word):
+    def make_guess(prev_word, prev_guess, word):
         if word.find('--') == 0:
             guess = '---'
         elif word.find('--') > 0:
@@ -48,7 +48,7 @@ def read_in_test_data():
         elif exists(word) or word in [":", "(", ")", ";", ".", ","]:
             guess = word
         else:
-            guess = ocr_correction(word, confusing, similar)
+            guess = ocr_correction(word)
             if guess is None:
                 if exists(prev_word):
                     guess = best_guess(prev_word, word)
@@ -97,7 +97,7 @@ def read_in_test_data():
                 word = row['Word']
                 if word in [",", ""]:
                     continue
-                guess = make_guess(confusing, similar, prev_word, prev_guess, word)
+                guess = make_guess(prev_word, prev_guess, word)
                 writer.writerow([row['Word'], row['Tag'],row['Lemma'],guess])
 
                 # Only for accuracy estimation during development phase

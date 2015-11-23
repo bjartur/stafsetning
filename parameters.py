@@ -2,8 +2,6 @@ class Parameters:
     filename = ''
     max_change_context = 1
     max_change_optical = 2
-    treshold_common = 0.005
-    treshold_rare   = 0.001
     min_err_freq = 2
 
     # File for training data for populating word_frequency and following_word
