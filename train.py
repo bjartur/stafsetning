@@ -5,7 +5,7 @@ from parameters import *
 
 # skilar þeim lyklagildispörum þar sem gildið er a.m.k. min_err_freq
 def clean(correction):
-    return { k: v for k, v in correction.items() if v >= min_err_freq }
+    return { k: v for k, v in correction.items() if v >= Parameters.min_err_freq }
 
 # skilar summu allra gilda í d
 def dictsum(d):
@@ -22,7 +22,7 @@ def diff(typeds, corrects):
         return None
     for typed, correct in zip(typeds,corrects):
         if correct != typed:
-            if n_err > max_change_optical:
+            if n_err > Parameters.max_change_optical:
                 return None
             else:
                 n_err += 1
@@ -32,9 +32,9 @@ def diff(typeds, corrects):
 
 def characterwise():
     similarity = {}
-    with open(training_data, newline='', encoding='utf-8') as csvfile:
+    with open(Parameters.training_data, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
-        print("Finding similarity characters in:", training_data)
+        print("Finding similarity characters in:", Parameters.training_data)
         for row in reader:
             result = diff(row['Word'], row['CorrectWord'])
             if result is not None: #if neither equal nor too different
